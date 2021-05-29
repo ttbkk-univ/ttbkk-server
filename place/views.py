@@ -18,3 +18,8 @@ class PlaceViewSet(viewsets.ViewSet):
             response_serializer = PlaceResponseSerializer(place)
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
         return Response({'error': 'Invalid Data'})
+
+    def list(self, request):
+        places = Place.objects.all()
+        response_serializer = PlaceResponseSerializer(places, many=True)
+        return Response(response_serializer.data, status=status.HTTP_200_OK)
