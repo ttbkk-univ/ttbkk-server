@@ -1,0 +1,6 @@
+DB_ENGINE = ''
+DB_HOST = ''
+DB_USER = ''
+DB_PASSWORD = ''
+DB_PORT = ''
+DB_NAME = ''
