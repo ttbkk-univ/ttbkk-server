@@ -7,8 +7,9 @@ from place.models import Place
 from place.serializers import PlaceResponseSerializer, PlaceCreateSerializer
 
 
-class PlaceViewSet(viewsets.ViewSet):
-    queryset = Place.objects.all()
+class PlaceViewSet(viewsets.ModelViewSet):
+    queryset = Place.objects.prefetch_related('hashtags', 'brand__hashtags').all()
+    serializer_class = PlaceResponseSerializer
 
     @transaction.non_atomic_requests
     def create(self, request):
@@ -19,7 +20,9 @@ class PlaceViewSet(viewsets.ViewSet):
             return Response(response_serializer.data, status=status.HTTP_201_CREATED)
         return Response({'error': 'Invalid Data'})
 
-    def list(self, request):
-        places = Place.objects.all()
-        response_serializer = PlaceResponseSerializer(places, many=True)
-        return Response(response_serializer.data, status=status.HTTP_200_OK)
+    def update(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+    def destroy(self, request, *args, **kwargs):
+        return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
