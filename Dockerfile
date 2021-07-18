@@ -11,6 +11,7 @@ COPY ./place /app/place
 COPY ./tbkmap /app/tbkmap
 COPY ./user /app/user
 COPY manage.py /app/manage.py
+COPY env.py /app/env.py
 
 
 ENTRYPOINT ["python3", "manage.py", "runserver", "0.0.0.0:8000"]

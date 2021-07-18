@@ -7,3 +7,4 @@ services:
     volumes:
       - "./data:/app/data"
     container_name: "ttbkk-server"
+    restart: always
