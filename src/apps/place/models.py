@@ -3,9 +3,9 @@ import uuid
 from django.db import models
 
 # Create your models here.
-from brand.models import Brand
-from hashtag.models import Hashtag
-from user.models import User
+from src.apps.brand.models import Brand
+from src.apps.hashtag.models import Hashtag
+from src.apps.user.models import User
 
 
 class Place(models.Model):

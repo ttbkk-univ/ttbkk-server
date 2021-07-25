@@ -3,8 +3,8 @@ import uuid
 from django.db import models
 
 # Create your models here.
-from hashtag.models import Hashtag
-from user.models import User
+from src.apps.hashtag.models import Hashtag
+from src.apps.user.models import User
 
 
 class Brand(models.Model):

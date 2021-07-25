@@ -1,10 +1,9 @@
 from django.db import transaction
 from rest_framework import viewsets, status
-from rest_framework.decorators import action
 from rest_framework.response import Response
 
-from place.models import Place
-from place.serializers import PlaceResponseSerializer, PlaceCreateSerializer
+from src.apps.place.models import Place
+from src.apps.place.serializers import PlaceResponseSerializer, PlaceCreateSerializer
 
 
 class PlaceViewSet(viewsets.ModelViewSet):

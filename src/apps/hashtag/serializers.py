@@ -1,6 +1,6 @@
 from rest_framework import serializers
 
-from hashtag.models import Hashtag
+from src.apps.hashtag.models import Hashtag
 
 
 class HashtagListSerializer(serializers.ListSerializer):

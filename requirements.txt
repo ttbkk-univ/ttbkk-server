@@ -7,6 +7,7 @@ django-cors-headers==3.7.0
 django-import-export==2.5.0
 djangorestframework==3.12.4
 et-xmlfile==1.1.0
+gunicorn==20.1.0
 MarkupPy==1.14
 mysqlclient==2.0.3
 odfpy==1.4.1

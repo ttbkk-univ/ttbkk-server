@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class PlaceConfig(AppConfig):
+class UserConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'place'
+    name = 'src.apps.user'

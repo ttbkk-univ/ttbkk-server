@@ -1,13 +1,10 @@
-import json
-
 from rest_framework import serializers
 
-from brand.models import Brand
-from brand.serializers import BrandResponseSerializer
-from hashtag.models import Hashtag
-from hashtag.serializers import HashtagResponseSerializer, HashtagListSerializer
-from place.models import Place
-from user.models import User
+from src.apps.brand.models import Brand
+from src.apps.brand.serializers import BrandResponseSerializer
+from src.apps.hashtag.models import Hashtag
+from src.apps.hashtag.serializers import HashtagResponseSerializer, HashtagListSerializer
+from src.apps.place.models import Place
 
 
 class PlaceResponseSerializer(serializers.ModelSerializer):

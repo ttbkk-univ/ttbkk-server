@@ -1,10 +1,24 @@
 version: "3.1"
 services:
-  server:
-    build: .
-    ports:
-      - "8000:8000"
-    volumes:
-      - "./data:/app/data"
-    container_name: "ttbkk-server"
+  django:
+    build:
+      dockerfile: docker/django/Dockerfile
+      context: .
+    container_name: "ttbkk-server-django"
     restart: always
+    volumes:
+      - static:/app/static
+
+  nginx:
+    image: nginx:1.21.1
+    container_name: "ttbkk-server-nginx"
+    ports:
+      - "8000:80"
+    restart: always
+    volumes:
+      - ./docker/nginx:/etc/nginx/conf.d
+      - static:/static
+    depends_on:
+      - django
+volumes:
+  static:

@@ -1,8 +1,8 @@
-from rest_framework import viewsets, status, filters, generics, mixins
+from rest_framework import viewsets, status, filters
 from rest_framework.response import Response
 
-from brand.models import Brand
-from brand.serializers import BrandResponseSerializer
+from src.apps.brand.models import Brand
+from src.apps.brand.serializers import BrandResponseSerializer
 
 
 class BrandViewSet(viewsets.ModelViewSet):
