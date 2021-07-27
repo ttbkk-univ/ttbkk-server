@@ -11,8 +11,8 @@ from src.apps.user.models import User
 class Place(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
     name = models.CharField(max_length=150)
-    latitude = models.FloatField()
-    longitude = models.FloatField()
+    latitude = models.DecimalField(max_digits=25, decimal_places=20)
+    longitude = models.DecimalField(max_digits=25, decimal_places=20)
     is_deleted = models.BooleanField(default=False)
     description = models.TextField(blank=True, null=True)
     hashtags = models.ManyToManyField(Hashtag)

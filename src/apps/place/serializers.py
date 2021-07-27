@@ -1,4 +1,7 @@
+from django.db.migrations.serializer import FloatSerializer
+from django.db.models import FloatField
 from rest_framework import serializers
+from rest_framework.fields import SerializerMethodField
 
 from src.apps.brand.models import Brand
 from src.apps.brand.serializers import BrandResponseSerializer
@@ -10,10 +13,20 @@ from src.apps.place.models import Place
 class PlaceResponseSerializer(serializers.ModelSerializer):
     brand = BrandResponseSerializer(many=False, read_only=True)
     hashtags = HashtagResponseSerializer(many=True, read_only=True)
+    longitude = SerializerMethodField()
+    latitude = SerializerMethodField()
 
     class Meta:
         model = Place
         fields = '__all__'
+
+    @staticmethod
+    def get_longitude(obj):
+        return float(obj.longitude)
+
+    @staticmethod
+    def get_latitude(obj):
+        return float(obj.latitude)
 
 
 class PlaceCreateSerializer(serializers.Serializer):
