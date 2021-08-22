@@ -12,6 +12,6 @@ def setup_chrome():
     chrome_options.add_argument("disable-gpu")
     chrome_options.add_argument("--disable-dev-shm-usage")
     driver = webdriver.Chrome(env.CHROMEDRIVER_PATH, chrome_options=chrome_options)
-    sleep(3)
+    sleep(5)
     print('Initialize ChromeDriver Complete...')
     return driver
