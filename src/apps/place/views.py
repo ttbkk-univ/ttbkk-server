@@ -1,5 +1,8 @@
+from django.core.paginator import Paginator
 from django.db import transaction
 from rest_framework import viewsets, status
+from rest_framework.decorators import action
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from src.apps.place.models import Place
@@ -7,21 +10,29 @@ from src.apps.place.serializers import PlaceResponseSerializer, PlaceCreateSeria
 
 
 class PlaceViewSet(viewsets.ModelViewSet):
-    queryset = Place.objects.select_related('brand').prefetch_related('hashtags', 'brand__hashtags').all()
+    queryset = Place.objects.select_related('brand').prefetch_related('hashtags', 'brand__hashtags')
     serializer_class = PlaceResponseSerializer
 
     def list(self, request, *args, **kwargs):
         bottom_left = self.request.query_params.get('bottom_left')
         top_right = self.request.query_params.get('top_right')
+        page = self.request.query_params.get('page')
+        limit = self.request.query_params.get('limit') or 100
+        queryset = self.get_queryset()
+
         if bottom_left and top_right and len(bottom_left.split(',')) == 2 and len(top_right.split(',')) == 2:
             bottom_left = bottom_left.split(',')
             top_right = top_right.split(',')
-            queryset = Place.objects.filter(latitude__range=(bottom_left[0], top_right[0]),
-                                            longitude__range=(bottom_left[1], top_right[1])).prefetch_related(
-                'hashtags', 'brand__hashtags').all()
+            queryset = queryset.filter(latitude__range=(bottom_left[0], top_right[0]),
+                                       longitude__range=(bottom_left[1], top_right[1]))
+
+        if page:
+            paginator = Paginator(queryset, limit)
+            places = paginator.get_page(page)
         else:
-            queryset = self.get_queryset()
-        response_serializer = PlaceResponseSerializer(queryset, many=True)
+            places = queryset.all()
+
+        response_serializer = PlaceResponseSerializer(places, many=True)
         return Response(data=response_serializer.data, status=status.HTTP_200_OK)
 
     @transaction.non_atomic_requests
@@ -39,3 +50,17 @@ class PlaceViewSet(viewsets.ModelViewSet):
     def destroy(self, request, *args, **kwargs):
         return Response(status=status.HTTP_405_METHOD_NOT_ALLOWED)
 
+    @action(detail=False)
+    def count(self, request, *args, **kwargs):
+        bottom_left = self.request.query_params.get('bottom_left')
+        top_right = self.request.query_params.get('top_right')
+        queryset = self.get_queryset()
+
+        if bottom_left and top_right and len(bottom_left.split(',')) == 2 and len(top_right.split(',')) == 2:
+            bottom_left = bottom_left.split(',')
+            top_right = top_right.split(',')
+            queryset = queryset.filter(latitude__range=(bottom_left[0], top_right[0]),
+                                       longitude__range=(bottom_left[1], top_right[1]))
+
+        place_cnt = queryset.count()
+        return Response(data=place_cnt, status=status.HTTP_200_OK)
