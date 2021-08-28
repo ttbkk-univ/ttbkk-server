@@ -24,7 +24,7 @@ class BaseCrawler:
     def set_next_page_url(self):
         raise NotImplementedError
 
-    def get_place_data(self):
+    def get_place_data(self) -> [Place]:
         # return Place(name, description, latitude, longitude)
         raise NotImplementedError
 
