@@ -17,7 +17,7 @@ class SinjeonCrawler(BaseCrawler):
         self.url = self.base_url + str(self.page_number)
         self.page_number += 1
 
-    def get_place_data(self) -> [Place]:
+    def get_place_data(self):
         is_success = False
         while not is_success:
             try:
@@ -36,7 +36,7 @@ class SinjeonCrawler(BaseCrawler):
             pass
         places = []
         for element in elements:
-            name = '신전떡볶이 %s' % element.find_element_by_xpath('./td[2]/a').text
+            name = '%s %s' % (self.brand_name, element.find_element_by_xpath('./td[2]/a').text)
             telephone = element.find_element_by_xpath('./td[3]').text
             address = element.find_element_by_xpath('./td[4]').text
             description = '주소: %s\n전화번호: %s' % (address, telephone)
