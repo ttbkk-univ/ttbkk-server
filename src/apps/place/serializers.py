@@ -1,5 +1,3 @@
-from django.db.migrations.serializer import FloatSerializer
-from django.db.models import FloatField
 from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 
