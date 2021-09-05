@@ -1,4 +1,6 @@
 from enum import Enum
+
+from src.crawlers.franchises.baedduck import BaeDduckCrawler
 from src.crawlers.franchises.gamtan import GamtanCrawler
 from src.crawlers.franchises.sinjeon import SinjeonCrawler
 from src.crawlers.franchises.yupdduk import YupddukCrawler
@@ -8,6 +10,7 @@ class FranchiseType(Enum):
     SINJEON = 'sinjeon'
     GAMTAN = 'gamtan'
     YUPDDUK = 'yupdduk'
+    BAEDDUCK = 'baedduck'
 
 
 def get_crawlers(types):
@@ -19,6 +22,8 @@ def get_crawlers(types):
             result.append(GamtanCrawler())
         elif crawler_type == FranchiseType.YUPDDUK:
             result.append(YupddukCrawler())
+        elif crawler_type == FranchiseType.BAEDDUCK:
+            result.append(BaeDduckCrawler())
         else:
             raise TypeError('invalid crawler type')
     return result
@@ -26,7 +31,7 @@ def get_crawlers(types):
 
 def run():
     crawlers = get_crawlers([
-        FranchiseType.YUPDDUK
+        FranchiseType.BAEDDUCK,
     ])
     for crawler in crawlers:
         crawler.run()
