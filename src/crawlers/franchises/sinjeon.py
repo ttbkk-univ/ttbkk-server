@@ -42,7 +42,7 @@ class SinjeonCrawler(BaseCrawler):
             description = '주소: %s\n전화번호: %s' % (address, telephone)
             latitude, longitude = get_latlng_by_address(address)
             if not latitude or not longitude:
-                print('[failed] %s' % name)
+                print('[failed] %s\n%s' % (name, description))
                 continue
             places.append(Place(name=name, description=description, latitude=latitude, longitude=longitude,
                                 brand=self.get_brand()))
