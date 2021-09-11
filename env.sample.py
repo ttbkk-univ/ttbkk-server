@@ -4,3 +4,7 @@ DB_USER = ''
 DB_PASSWORD = ''
 DB_PORT = ''
 DB_NAME = ''
+CHROMEDRIVER_PATH = ''
+GOOGLE_MAP_KEY = ''
+KAKAO_API_KEY = ''
+DEBUG = True
