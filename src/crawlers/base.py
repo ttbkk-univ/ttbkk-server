@@ -14,7 +14,8 @@ class BaseCrawler:
     def _set_brand(self):
         if not self.brand_name:
             raise NotImplementedError
-        self.brand = Brand.objects.get(name=self.brand_name)
+        brand, created = Brand.objects.get_or_create(name=self.brand_name)
+        self.brand = brand
 
     def get_brand(self):
         if not self.brand:
