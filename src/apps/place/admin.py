@@ -5,7 +5,7 @@ from src.apps.place.models import Place
 
 
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'latitude', 'longitude']
+    list_display = ['id', 'name', 'latitude', 'longitude', 'created_at', 'updated_at']
     search_fields = ['id', 'name', 'brand__name']
 
 
