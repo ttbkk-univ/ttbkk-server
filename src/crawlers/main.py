@@ -35,7 +35,7 @@ def get_crawlers(types):
 
 def run():
     crawlers = get_crawlers([
-        FranchiseType.MYUNGRANG,
+        FranchiseType.GAMTAN,
     ])
     for crawler in crawlers:
         crawler.run()

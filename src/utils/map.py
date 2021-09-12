@@ -6,10 +6,10 @@ import env
 
 
 def get_latlng(road_address, place_name):
-    lat, lng = get_lanlng_with_google(road_address)
+    lat, lng = get_latlng_with_kakao(road_address, place_name)
     if lat and lng:
         return lat, lng
-    lat, lng = get_latlng_with_kakao(road_address, place_name)
+    lat, lng = get_lanlng_with_google(road_address)
     if lat and lng:
         return lat, lng
     print('주소를 찾지 못했습니다. 수동으로 넣어주세요.')
@@ -36,10 +36,10 @@ def get_latlng_with_kakao_by_name(place_name):
     if len(address_data['documents']) != 1:
         for document in address_data['documents']:
             if document['place_name'] == place_name:
-                return document['x'], document['y']
+                return document['y'], document['x']
         return None, None
     document = address_data['documents'][0]
-    return document['x'], document['y']
+    return document['y'], document['x']
 
 
 def get_latlng_with_kakao_by_road_address(road_address, place_name):
@@ -60,10 +60,10 @@ def get_latlng_with_kakao_by_road_address(road_address, place_name):
         print('[Kakao] 주소를 찾지 못했습니다. 주소: [%s]' % road_address)
         return None, None
     for document in address_data['documents']:
-        if document.place_name == place_name:
-            return document['x'], document['y']
+        if document['place_name'] == place_name:
+            return document['y'], document['x']
     result = address_data['documents'][0]
-    return result['x'], result['y']
+    return result['y'], result['x']
 
 
 def get_latlng_with_kakao(road_address, place_name):
