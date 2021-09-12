@@ -39,7 +39,14 @@ class BaseCrawler:
             if not len(places):
                 break
             place_names = [place.name for place in places]
-            exist_place_names = [place.name for place in Place.objects.filter(name__in=place_names)]
+            exist_places = Place.objects.filter(name__in=place_names)
+            for exist_place in exist_places:
+                for place in places:
+                    if place.name == exist_place.name and (place.latitude != exist_place.latitude or place.longitude != exist_place.longitude):
+                        exist_place.latitude = place.latitude
+                        exist_place.longitude = place.longitude
+                        exist_place.save()
+            exist_place_names = [place.name for place in exist_places]
             new_places = [place for place in places if place.name not in exist_place_names]
             Place.objects.bulk_create(new_places)
             print('new %s places are created' % str(len(new_places)))
