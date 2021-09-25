@@ -3,6 +3,7 @@ from enum import Enum
 from src.crawlers.franchises.baedduck import BaeDduckCrawler
 from src.crawlers.franchises.eungdduk import EungDdukCrawler
 from src.crawlers.franchises.gamtan import GamtanCrawler
+from src.crawlers.franchises.jawsfood import JawsFoodCrawler
 from src.crawlers.franchises.myungranghotdog import MyungrangHotDogCrawler
 from src.crawlers.franchises.sinbul import SinBulCrawler
 from src.crawlers.franchises.sincham import SinChamCrawler
@@ -21,32 +22,35 @@ class FranchiseType(Enum):
     SINCHAM = '신참'
     SINBUL = '신불'
     EUNGDDUK = '응떡'
+    JAWSFOOD = '죠스떡볶이'
 
 
 def get_crawlers(types):
-    result = []
+    crawlers = []
     for crawler_type in types:
         if crawler_type == FranchiseType.SINJEON:
-            result.append(SinjeonCrawler())
+            crawlers.append(SinjeonCrawler())
         elif crawler_type == FranchiseType.GAMTAN:
-            result.append(GamtanCrawler())
+            crawlers.append(GamtanCrawler())
         elif crawler_type == FranchiseType.YUPDDUK:
-            result.append(YupddukCrawler())
+            crawlers.append(YupddukCrawler())
         elif crawler_type == FranchiseType.BAEDDUCK:
-            result.append(BaeDduckCrawler())
+            crawlers.append(BaeDduckCrawler())
         elif crawler_type == FranchiseType.MYUNGRANG:
-            result.append(MyungrangHotDogCrawler())
+            crawlers.append(MyungrangHotDogCrawler())
         elif crawler_type == FranchiseType.YOUNGDABANG:
-            result.append(YoungDaBangCrawler())
+            crawlers.append(YoungDaBangCrawler())
         elif crawler_type == FranchiseType.SINCHAM:
-            result.append(SinChamCrawler())
+            crawlers.append(SinChamCrawler())
         elif crawler_type == FranchiseType.SINBUL:
-            result.append(SinBulCrawler())
+            crawlers.append(SinBulCrawler())
         elif crawler_type == FranchiseType.EUNGDDUK:
-            result.append(EungDdukCrawler())
+            crawlers.append(EungDdukCrawler())
+        elif crawler_type == FranchiseType.JAWSFOOD:
+            crawlers.append(JawsFoodCrawler())
         else:
             raise TypeError('invalid crawler type')
-    return result
+    return crawlers
 
 
 def run():
@@ -59,7 +63,8 @@ def run():
         # FranchiseType.YOUNGDABANG,
         # FranchiseType.SINCHAM,
         # FranchiseType.SINBUL,
-        FranchiseType.EUNGDDUK,
+        # FranchiseType.EUNGDDUK,
+        FranchiseType.JAWSFOOD
     ])
     for crawler in crawlers:
         crawler.run()
