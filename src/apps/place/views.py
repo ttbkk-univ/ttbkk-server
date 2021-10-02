@@ -20,11 +20,13 @@ class PlaceViewSet(viewsets.ModelViewSet):
         limit = self.request.query_params.get('limit') or 100
         queryset = self.get_queryset()
 
-        if bottom_left and top_right and len(bottom_left.split(',')) == 2 and len(top_right.split(',')) == 2:
-            bottom_left = bottom_left.split(',')
-            top_right = top_right.split(',')
-            queryset = queryset.filter(latitude__range=(bottom_left[0], top_right[0]),
-                                       longitude__range=(bottom_left[1], top_right[1]))
+        if not bottom_left or not top_right and len(bottom_left.split(',')) != 2 and len(top_right.split(',')) != 2:
+            raise ValueError
+
+        bottom_left = bottom_left.split(',')
+        top_right = top_right.split(',')
+        queryset = queryset.filter(latitude__range=(bottom_left[0], top_right[0]),
+                                   longitude__range=(bottom_left[1], top_right[1]))
 
         if page:
             paginator = Paginator(queryset, limit)
