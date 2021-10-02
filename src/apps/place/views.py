@@ -20,8 +20,11 @@ class PlaceViewSet(viewsets.ModelViewSet):
         limit = self.request.query_params.get('limit') or 100
         queryset = self.get_queryset()
 
-        if not bottom_left or not top_right and len(bottom_left.split(',')) != 2 and len(top_right.split(',')) != 2:
-            raise ValueError
+        if not page or not limit or not bottom_left or not top_right and len(bottom_left.split(',')) != 2 and len(top_right.split(',')) != 2:
+            return Response(data='page, limit, bottom_left, top_right is required', status=status.HTTP_400_BAD_REQUEST)
+
+        if int(limit) > 200:
+            return Response(data='limit must be smaller or equal than 200', status=status.HTTP_400_BAD_REQUEST)
 
         bottom_left = bottom_left.split(',')
         top_right = top_right.split(',')
