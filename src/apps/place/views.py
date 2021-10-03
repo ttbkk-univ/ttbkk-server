@@ -2,7 +2,6 @@ from django.core.paginator import Paginator
 from django.db import transaction
 from rest_framework import viewsets, status
 from rest_framework.decorators import action
-from rest_framework.pagination import PageNumberPagination
 from rest_framework.response import Response
 
 from src.apps.place.models import Place
@@ -31,11 +30,8 @@ class PlaceViewSet(viewsets.ModelViewSet):
         queryset = queryset.filter(latitude__range=(bottom_left[0], top_right[0]),
                                    longitude__range=(bottom_left[1], top_right[1]))
 
-        if page:
-            paginator = Paginator(queryset, limit)
-            places = paginator.get_page(page)
-        else:
-            places = queryset.all()
+        paginator = Paginator(queryset, limit)
+        places = paginator.get_page(page)
 
         response_serializer = PlaceResponseSerializer(places, many=True)
         return Response(data=response_serializer.data, status=status.HTTP_200_OK)
