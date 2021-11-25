@@ -1,0 +1,58 @@
+import time
+from src.apps.place.models import Place
+from src.crawlers.base import BaseCrawler
+from src.utils.chromedriver import setup_chrome
+from src.utils.map import get_latlng
+
+
+class TteokChamCrawler(BaseCrawler):
+    base_url = 'http://www.tteokcham.com/'
+    page_number = 0
+    brand = None
+
+    def __init__(self):
+        self.brand_name = '떡참'
+
+    def set_next_page_url(self):
+        self.url = self.base_url
+        self.page_number += 1
+        print(self.page_number)
+
+    def get_place_data(self):
+        if self.page_number == 1:
+            is_success = False
+            while not is_success:
+                self.driver.get(self.url)
+                try:
+                    time.sleep(3)
+                    is_success = True
+                except Exception as e:
+                    self.driver = setup_chrome()
+                    continue
+        else:
+            self.driver.execute_script('ajaxCompanyArea(%s)' % self.page_number)
+            time.sleep(1)
+
+        elements = self.driver.find_elements_by_xpath('//*[@id="sb-list"]/table/tbody/tr')
+        if elements[0].find_element_by_xpath('./td').text == '매장이 없습니다.':
+            return []
+
+        places = []
+        for element in elements:
+            place_name = element.find_element_by_xpath('./td[1]').text
+
+            name = '%s %s' % (self.brand_name, place_name)
+            address = element.find_element_by_xpath('./td[2]').text
+            telephone = element.find_element_by_xpath('./td[3]').text
+            description = '주소: %s\n전화번호: %s' % (address, telephone)
+
+            latitude, longitude = get_latlng(address, name)
+            print('[%s] %s %s (%s,%s)' % (name, address, telephone, latitude, longitude))
+            if not latitude or not longitude:
+                print('[failed] %s\n%s' % (name, description))
+                continue
+            places.append(
+                Place(name=name, description=description, latitude=latitude, longitude=longitude,
+                      brand=self.get_brand()))
+            time.sleep(0.5)
+        return places
