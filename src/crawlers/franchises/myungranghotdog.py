@@ -18,10 +18,6 @@ class MyungrangHotDogCrawler(BaseCrawler):
 
     def set_next_page_url(self):
         self.url = self.base_url
-
-    def get_place_data(self):
-        if self.is_last_page:
-            return []
         self.is_last_page = True
         is_success = False
         while not is_success:
@@ -32,6 +28,10 @@ class MyungrangHotDogCrawler(BaseCrawler):
                 self.driver = setup_chrome()
                 continue
             is_success = True
+
+    def get_place_data(self):
+        if self.is_last_page:
+            return []
         try:
             self.driver.find_element_by_xpath('//*[@id="search2"]').click()
             self.driver.find_element_by_xpath('//*[@id="searchKeyword"]').send_keys('%%')

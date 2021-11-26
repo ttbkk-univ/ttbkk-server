@@ -13,12 +13,8 @@ class SinBulCrawler(BaseCrawler):
     def __init__(self):
         self.brand_name = '신불떡볶이'
 
-    def set_next_page_url(self):
+    def set_next_page(self):
         self.url = self.base_url
-
-    def get_place_data(self) -> [Place]:
-        if self.is_last_page:
-            return []
         self.is_last_page = True
         is_success = False
         while not is_success:
@@ -29,6 +25,10 @@ class SinBulCrawler(BaseCrawler):
                 self.driver = setup_chrome()
                 continue
             is_success = True
+
+    def get_place_data(self) -> [Place]:
+        if self.is_last_page:
+            return []
         elements = self.driver.find_elements_by_xpath('//*[@id="fboardlist"]/div/div[3]/ul/li')
         time.sleep(1)
         places = []

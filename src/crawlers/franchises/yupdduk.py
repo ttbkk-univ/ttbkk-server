@@ -13,11 +13,8 @@ class YupddukCrawler(BaseCrawler):
     def __init__(self):
         self.brand_name = '동대문엽기떡볶이'
 
-    def set_next_page_url(self):
+    def set_next_page(self):
         self.url = self.base_url + str(self.page_number)
-        self.page_number += 1
-
-    def get_place_data(self):
         is_success = False
         while not is_success:
             try:
@@ -27,6 +24,9 @@ class YupddukCrawler(BaseCrawler):
                 self.driver = setup_chrome()
                 continue
             is_success = True
+        self.page_number += 1
+
+    def get_place_data(self):
         try:
             elements = self.driver.find_elements_by_xpath('//*[@id="listbody"]/tr')
         except:

@@ -14,11 +14,8 @@ class GamtanCrawler(BaseCrawler):
     def __init__(self):
         self.brand_name = '감탄떡볶이'
 
-    def set_next_page_url(self):
+    def set_next_page(self):
         self.url = self.base_url + str(self.offset)
-        self.offset += 15
-
-    def get_place_data(self) -> [Place]:
         is_success = False
         while not is_success:
             try:
@@ -28,6 +25,9 @@ class GamtanCrawler(BaseCrawler):
                 self.driver = setup_chrome()
                 continue
             is_success = True
+        self.offset += 15
+
+    def get_place_data(self) -> [Place]:
         try:
             elements = self.driver.find_elements_by_xpath('//*[@id="content"]/section/div[2]/div/div[2]/div/table/tbody/tr')
             time.sleep(1)

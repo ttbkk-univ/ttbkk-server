@@ -13,12 +13,8 @@ class JawsFoodCrawler(BaseCrawler):
     def __init__(self):
         self.brand_name = '죠스떡볶이'
 
-    def set_next_page_url(self):
+    def set_next_page(self):
         self.url = self.base_url
-
-    def get_place_data(self):
-        if self.last_page:
-            return []
         self.last_page = True
         is_success = False
         while not is_success:
@@ -30,6 +26,9 @@ class JawsFoodCrawler(BaseCrawler):
                 continue
             is_success = True
 
+    def get_place_data(self):
+        if self.last_page:
+            return []
         elements = self.driver.find_elements_by_xpath('//*[@id="datalist"]/li')
         places = []
         for element in elements:
