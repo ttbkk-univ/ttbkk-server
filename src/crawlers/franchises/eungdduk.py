@@ -15,11 +15,8 @@ class EungDdukCrawler(BaseCrawler):
     def __init__(self):
         self.brand_name = '응급실국물떡볶이'
 
-    def set_next_page_url(self):
+    def set_next_page(self):
         self.url = self.base_url + str(self.page_number)
-        self.page_number += 1
-
-    def get_place_data(self):
         is_success = False
         while not is_success:
             try:
@@ -29,7 +26,9 @@ class EungDdukCrawler(BaseCrawler):
                 self.driver = setup_chrome()
                 continue
             is_success = True
+        self.page_number += 1
 
+    def get_place_data(self):
         if not self.last_page:
             last_page_link = str(self.driver.find_element_by_xpath('//*[@id="section-1"]/div/div/table[2]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[5]/a').get_attribute('href'))
             query_params = parse.parse_qs(last_page_link.split('?')[1])

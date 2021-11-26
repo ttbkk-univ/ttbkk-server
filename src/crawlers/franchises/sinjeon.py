@@ -13,11 +13,8 @@ class SinjeonCrawler(BaseCrawler):
     def __init__(self):
         self.brand_name = '신전떡볶이'
 
-    def set_next_page_url(self):
+    def set_next_page(self):
         self.url = self.base_url + str(self.page_number)
-        self.page_number += 1
-
-    def get_place_data(self):
         is_success = False
         while not is_success:
             try:
@@ -27,6 +24,9 @@ class SinjeonCrawler(BaseCrawler):
                 self.driver = setup_chrome()
                 continue
             is_success = True
+        self.page_number += 1
+
+    def get_place_data(self):
         elements = self.driver.find_elements_by_xpath('//*[@id="fboardlist"]/div/table/tbody/tr')
         try:
             if elements[0].find_element_by_class_name('empty_table'):

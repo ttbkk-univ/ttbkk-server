@@ -22,7 +22,7 @@ class BaseCrawler:
             self._set_brand()
         return self.brand
 
-    def set_next_page_url(self):
+    def set_next_page(self):
         raise NotImplementedError
 
     def get_place_data(self) -> [Place]:
@@ -33,7 +33,7 @@ class BaseCrawler:
         if not self.driver:
             raise ModuleNotFoundError('selenium driver required')
         while True:
-            self.set_next_page_url()
+            self.set_next_page()
             print(self.url)
             places = self.get_place_data()
             if not len(places):

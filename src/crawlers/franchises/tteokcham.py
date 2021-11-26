@@ -7,18 +7,14 @@ from src.utils.map import get_latlng
 
 class TteokChamCrawler(BaseCrawler):
     base_url = 'http://www.tteokcham.com/'
-    page_number = 0
+    page_number = 1
     brand = None
 
     def __init__(self):
         self.brand_name = '떡참'
 
-    def set_next_page_url(self):
+    def set_next_page(self):
         self.url = self.base_url
-        self.page_number += 1
-        print(self.page_number)
-
-    def get_place_data(self):
         if self.page_number == 1:
             is_success = False
             while not is_success:
@@ -32,7 +28,9 @@ class TteokChamCrawler(BaseCrawler):
         else:
             self.driver.execute_script('ajaxCompanyArea(%s)' % self.page_number)
             time.sleep(1)
+        self.page_number += 1
 
+    def get_place_data(self):
         elements = self.driver.find_elements_by_xpath('//*[@id="sb-list"]/table/tbody/tr')
         if elements[0].find_element_by_xpath('./td').text == '매장이 없습니다.':
             return []
