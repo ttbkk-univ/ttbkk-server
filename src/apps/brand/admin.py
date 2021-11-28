@@ -9,4 +9,4 @@ class BrandAdmin(admin.ModelAdmin):
     search_fields = ['name']
 
 
-admin.site.register(Brand)
+admin.site.register(Brand, BrandAdmin)
