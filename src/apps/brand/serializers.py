@@ -5,6 +5,7 @@ from src.apps.hashtag.serializers import HashtagResponseSerializer
 
 class BrandResponseSerializer(serializers.ModelSerializer):
     hashtags = HashtagResponseSerializer(many=True, read_only=True)
+    place_count = serializers.IntegerField()
 
     class Meta:
         model = Brand

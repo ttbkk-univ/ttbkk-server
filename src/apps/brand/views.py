@@ -1,3 +1,4 @@
+from django.db.models import Count
 from rest_framework import viewsets, status, filters
 from rest_framework.response import Response
 
@@ -6,7 +7,7 @@ from src.apps.brand.serializers import BrandResponseSerializer
 
 
 class BrandViewSet(viewsets.ModelViewSet):
-    queryset = Brand.objects.prefetch_related('hashtags').order_by('name').all()
+    queryset = Brand.objects.annotate(place_count=Count('place')).order_by('-place_count').all()
     filter_backends = [filters.SearchFilter]
     search_fields = ['name', 'hashtags__name']
     serializer_class = BrandResponseSerializer
