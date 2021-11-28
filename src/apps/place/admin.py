@@ -1,12 +1,21 @@
 from django.contrib import admin
 
 # Register your models here.
+from django.contrib.admin import display
+
 from src.apps.place.models import Place
 
 
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ['id', 'name', 'latitude', 'longitude', 'created_at', 'updated_at']
+    list_display = ['id', 'name', 'get_brand_name', 'latitude', 'longitude', 'created_at', 'updated_at']
     search_fields = ['id', 'name', 'brand__name']
+
+    @display(description='brand_name')
+    def get_brand_name(self, obj):
+        return obj.brand.name
+
+    def get_queryset(self, request):
+        return Place.objects.select_related('brand')
 
 
 admin.site.register(Place, PlaceAdmin)
