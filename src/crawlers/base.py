@@ -42,7 +42,10 @@ class BaseCrawler:
             exist_places = Place.objects.filter(name__in=place_names)
             for exist_place in exist_places:
                 for place in places:
-                    if place.name == exist_place.name and (place.latitude != exist_place.latitude or place.longitude != exist_place.longitude):
+                    if place.name == exist_place.name:
+                        exist_place.description = place.description
+                        exist_place.address = place.address
+                        exist_place.telephone = place.telephone
                         exist_place.latitude = place.latitude
                         exist_place.longitude = place.longitude
                         exist_place.save()
