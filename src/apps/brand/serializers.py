@@ -10,3 +10,11 @@ class BrandResponseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Brand
         fields = '__all__'
+
+
+class BrandResponseForPlaceSerializer(serializers.ModelSerializer):
+    hashtags = HashtagResponseSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Brand
+        fields = '__all__'

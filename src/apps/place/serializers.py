@@ -2,14 +2,14 @@ from rest_framework import serializers
 from rest_framework.fields import SerializerMethodField
 
 from src.apps.brand.models import Brand
-from src.apps.brand.serializers import BrandResponseSerializer
+from src.apps.brand.serializers import BrandResponseSerializer, BrandResponseForPlaceSerializer
 from src.apps.hashtag.models import Hashtag
 from src.apps.hashtag.serializers import HashtagResponseSerializer, HashtagListSerializer
 from src.apps.place.models import Place
 
 
 class PlaceResponseSerializer(serializers.ModelSerializer):
-    brand = BrandResponseSerializer(many=False, read_only=True)
+    brand = BrandResponseForPlaceSerializer(many=False, read_only=True)
     hashtags = HashtagResponseSerializer(many=True, read_only=True)
     longitude = SerializerMethodField()
     latitude = SerializerMethodField()
