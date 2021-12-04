@@ -62,12 +62,11 @@ class BaeDduckCrawler(BaseCrawler):
             name = '%s %s' % (self.brand_name, place_name)
             print(name)
             address = element.find_element_by_xpath('./td[3]').text
-            description = '주소: %s' % address
             latitude, longitude = get_latlng(address, name)
             if not latitude or not longitude:
-                print('[failed] %s\n%s' % (name, description))
+                print('[failed] %s\n%s' % (name, address))
                 continue
-            places.append(Place(name=name, description=description, latitude=latitude, longitude=longitude,
+            places.append(Place(name=name, address=address, latitude=latitude, longitude=longitude,
                                 brand=self.get_brand()))
             time.sleep(0.5)
         return places

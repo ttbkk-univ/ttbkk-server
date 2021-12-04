@@ -37,12 +37,11 @@ class YupddukCrawler(BaseCrawler):
             name = '%s %s' % (self.brand_name, element.find_element_by_xpath('./td[2]').text)
             address = element.find_element_by_xpath('./td[3]').text
             telephone = element.find_element_by_xpath('./td[4]').text
-            description = '주소: %s\n전화번호: %s' % (address, telephone)
             latitude, longitude = get_latlng(address, name)
             if not latitude or not longitude:
-                print('[failed] %s\n%s' % (name, description))
+                print('[failed] %s\n%s\n%s' % (name, address, telephone))
                 continue
-            places.append(Place(name=name, description=description, latitude=latitude, longitude=longitude,
-                                brand=self.get_brand()))
+            places.append(Place(name=name, address=address, latitude=latitude, longitude=longitude,
+                                telephone=telephone, brand=self.get_brand()))
             time.sleep(0.5)
         return places

@@ -10,19 +10,27 @@ from src.apps.user.models import User
 
 class Place(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4)
-    name = models.CharField(max_length=150)
+
     latitude = models.DecimalField(max_digits=15, decimal_places=13)
     longitude = models.DecimalField(max_digits=15, decimal_places=12)
-    is_deleted = models.BooleanField(default=False)
+
+    name = models.CharField(max_length=150)
+    address = models.CharField(max_length=100, null=True)  # TODO nullable false
+    telephone = models.CharField(max_length=100, null=True)
     description = models.TextField(blank=True, null=True)
+
     hashtags = models.ManyToManyField(Hashtag)
     brand = models.ForeignKey(Brand, null=True, on_delete=models.SET_NULL)
+
     created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name='create_places',
                                    related_query_name='create_place')
     updated_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name='update_places',
                                    related_query_name='update_place')
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    is_deleted = models.BooleanField(default=False)
 
     objects = models.Manager()
 

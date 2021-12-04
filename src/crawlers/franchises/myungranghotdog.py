@@ -16,9 +16,8 @@ class MyungrangHotDogCrawler(BaseCrawler):
     def __init__(self):
         self.brand_name = '명랑핫도그'
 
-    def set_next_page_url(self):
+    def set_next_page(self):
         self.url = self.base_url
-        self.is_last_page = True
         is_success = False
         while not is_success:
             try:
@@ -49,14 +48,14 @@ class MyungrangHotDogCrawler(BaseCrawler):
             name = '%s %s' % (self.brand_name, element.find_element_by_xpath('./p[1]/a').text)
             address = element.find_element_by_xpath('./p[2]').text
             telephone = element.find_element_by_xpath('./p[3]/a').text
-            description = '주소: %s\n전화번호: %s' % (address, telephone)
             latitude, longitude = get_latlng(address.split('(')[0], name)
             if not latitude or not longitude:
-                print('[failed] %s\n%s' % (name, description))
+                print('[failed] %s\n%s\n%s' % (name, address, telephone))
                 continue
             print(latitude, longitude)
-            places.append(Place(name=name, description=description, latitude=latitude, longitude=longitude,
-                                brand=self.get_brand()))
+            places.append(Place(name=name, address=address, latitude=latitude, longitude=longitude,
+                                telephone=telephone, brand=self.get_brand()))
             time.sleep(0.5)
             num += 1
+        self.is_last_page = True
         return places
