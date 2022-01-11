@@ -12,7 +12,9 @@ class PlaceAdmin(admin.ModelAdmin):
 
     @display(description='brand_name')
     def get_brand_name(self, obj):
-        return obj.brand.name
+        if obj.brand and obj.brand.name:
+            return obj.brand.name
+        return ''
 
     def get_queryset(self, request):
         return Place.objects.select_related('brand')
