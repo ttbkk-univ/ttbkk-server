@@ -6,6 +6,7 @@ from src.crawlers.franchises.dookki import DookkiCrawler
 from src.crawlers.franchises.eungdduk import EungDdukCrawler
 from src.crawlers.franchises.gamtan import GamtanCrawler
 from src.crawlers.franchises.jawsfood import JawsFoodCrawler
+from src.crawlers.franchises.kang import KangCrawler
 from src.crawlers.franchises.myungranghotdog import MyungrangHotDogCrawler
 from src.crawlers.franchises.samcheop import SamCheopCrawler
 from src.crawlers.franchises.sinbul import SinBulCrawler
@@ -31,6 +32,7 @@ class FranchiseType(Enum):
     SAMCHEOP = '삼첩분식'
     DALDDUK = '달토끼의떡볶이흡입구역'
     DOOKKI = '두끼'
+    KANG = '크앙'
 
 
 def get_crawlers(types):
@@ -64,6 +66,8 @@ def get_crawlers(types):
             crawlers.append(DalDdukCrawler())
         elif crawler_type == FranchiseType.DOOKKI:
             crawlers.append(DookkiCrawler())
+        elif crawler_type == FranchiseType.KANG:
+            crawlers.append(KangCrawler())
         else:
             raise TypeError('invalid crawler type')
     return crawlers
@@ -84,7 +88,8 @@ def run():
         # FranchiseType.TTEOKCHAM,
         # FranchiseType.SAMCHEOP,
         # FranchiseType.DALDDUK,
-        FranchiseType.DOOKKI
+        # FranchiseType.DOOKKI
+        FranchiseType.KANG
     ])
     for crawler in crawlers:
         crawler.run()
