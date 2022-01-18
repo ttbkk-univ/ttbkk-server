@@ -15,11 +15,11 @@ class Place(models.Model):
     longitude = models.DecimalField(max_digits=15, decimal_places=12)
 
     name = models.CharField(max_length=150)
-    address = models.CharField(max_length=100, null=True)  # TODO nullable false
-    telephone = models.CharField(max_length=100, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)  # TODO nullable false
+    telephone = models.CharField(max_length=100, blank=True, null=True)
     description = models.TextField(blank=True, null=True)
 
-    hashtags = models.ManyToManyField(Hashtag)
+    hashtags = models.ManyToManyField(Hashtag, blank=True)
     brand = models.ForeignKey(Brand, null=True, on_delete=models.SET_NULL)
 
     created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name='create_places',
