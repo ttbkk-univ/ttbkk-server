@@ -31,8 +31,8 @@ class PlaceCreateSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=150)
     latitude = serializers.FloatField()
     longitude = serializers.FloatField()
-    description = serializers.CharField(max_length=500, allow_null=True)
-    brand_name = serializers.CharField(max_length=150, allow_null=True)
+    description = serializers.CharField(max_length=500, allow_blank=True, allow_null=True)
+    brand_name = serializers.CharField(max_length=150)
     hashtags = HashtagListSerializer(allow_empty=True, allow_null=True)
 
     def create(self, validated_data):
