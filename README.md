@@ -3,6 +3,7 @@ Tteokbokki Map API Server
 
 ---
 
+- [For ttbkk-web Contributors](#for-ttbkk-web-contributors)
 - [How to setup](#how-to-setup)
   - [1. Install python environment](#1-install-python-environment)
   - [2. Clone and install requirements](#2-clone-and-install-requirements)
@@ -14,6 +15,16 @@ Tteokbokki Map API Server
   - [3. Launch for crawler](#3-launch-for-crawler)
 
 ---
+# For ttbkk-web contributors
+Here is always usable develop stage ttbkk-server for [ttbkk-web](https://github.com/siner308/ttbkk-web) contributor.
+
+You **don't need to run this server** for your client development.<br>
+Just fill text like below in your .env file in ttbkk-web project.
+
+```text
+REACT_APP_API_HOST=https://dev-api.ttbkk.com
+```
+
 # How to setup
 
 #### 1. Install python environment
