@@ -42,6 +42,13 @@ class PlaceViewSet(viewsets.ModelViewSet):
         response_serializer = PlaceResponseSerializer(places, many=True)
         return Response(data=response_serializer.data, status=status.HTTP_200_OK)
 
+    def retrieve(self, request, *args, **kwargs):
+        pk = kwargs.get('pk')
+        queryset = self.get_queryset().select_related('brand').prefetch_related('hashtags', 'brand__hashtags')
+        place = queryset.get(pk=pk)
+        response_serializer = PlaceResponseSerializer(place, many=False)
+        return Response(data=response_serializer.data, status=status.HTTP_200_OK)
+
     @action(detail=False)
     def grid(self, request):
         bottom_left = self.request.query_params.get('bottom_left')
