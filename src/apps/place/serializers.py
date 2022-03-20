@@ -27,6 +27,18 @@ class PlaceResponseSerializer(serializers.ModelSerializer):
         return float(obj.latitude)
 
 
+class PlaceSimpleResponseSerializer(serializers.Serializer):
+    id = serializers.UUIDField()
+    latitude = serializers.FloatField()
+    longitude = serializers.FloatField()
+    brand_id = serializers.UUIDField()
+
+
+class PlacePageResponseSerializer(serializers.Serializer):
+    count = serializers.IntegerField()
+    edges = PlaceSimpleResponseSerializer(many=True, read_only=True)
+
+
 class PlaceCreateSerializer(serializers.Serializer):
     name = serializers.CharField(max_length=150)
     latitude = serializers.FloatField()
