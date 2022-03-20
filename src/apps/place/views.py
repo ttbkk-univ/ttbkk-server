@@ -1,3 +1,4 @@
+import hashlib
 import json
 
 from django.core.paginator import Paginator
@@ -49,7 +50,9 @@ class PlaceViewSet(viewsets.ModelViewSet):
             return Response(data='bottom_left, top_right is required', status=status.HTTP_400_BAD_REQUEST)
 
         redis = Redis.get_client()
-        key = 'ttbkk-%s-place-%s' % (env.ENV, hash('%s-%s' % (bottom_left, top_right)))
+
+        position = '%s-%s' % (bottom_left, top_right)
+        key = 'ttbkk-%s-place-%s' % (env.ENV, hashlib.md5(position.encode('utf-8')).hexdigest())
         cache = redis.get(key)
 
         if cache:
