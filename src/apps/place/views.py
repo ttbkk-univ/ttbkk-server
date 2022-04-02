@@ -77,7 +77,7 @@ class PlaceViewSet(viewsets.ModelViewSet):
         bottom_left = bottom_left.split(',')
         top_right = top_right.split(',')
 
-        queryset = self.get_queryset()
+        queryset = self.get_queryset().select_related('brand').prefetch_related('hashtags', 'brand__hashtags')
         places = queryset.filter(latitude__range=(bottom_left[0], top_right[0]),
                                  longitude__range=(bottom_left[1], top_right[1]))
         count = places.count()

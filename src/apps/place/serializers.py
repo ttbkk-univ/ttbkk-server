@@ -31,7 +31,9 @@ class PlaceSimpleResponseSerializer(serializers.Serializer):
     id = serializers.UUIDField()
     latitude = serializers.FloatField()
     longitude = serializers.FloatField()
+    name = serializers.CharField()
     brand_id = serializers.UUIDField()
+    brand = BrandResponseForPlaceSerializer(many=False, read_only=True)
 
 
 class PlacePageResponseSerializer(serializers.Serializer):
