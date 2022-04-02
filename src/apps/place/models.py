@@ -20,12 +20,13 @@ class Place(models.Model):
     description = models.TextField(blank=True, null=True)
 
     hashtags = models.ManyToManyField(Hashtag, blank=True)
-    brand = models.ForeignKey(Brand, null=True, on_delete=models.SET_NULL)
+
+    brand = models.ForeignKey(Brand, null=True, on_delete=models.SET_NULL, db_column='brand_id')
 
     created_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name='create_places',
-                                   related_query_name='create_place')
+                                   related_query_name='create_place', db_column='created_by_id')
     updated_by = models.ForeignKey(User, blank=True, null=True, on_delete=models.SET_NULL, related_name='update_places',
-                                   related_query_name='update_place')
+                                   related_query_name='update_place', db_column='updated_by_id')
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
