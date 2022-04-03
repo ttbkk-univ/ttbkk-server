@@ -46,6 +46,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'src.middlewares.LoggerMiddleware.LoggerMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -113,6 +114,23 @@ if DEBUG:
             'django.db.backends': {
                 'handlers': ['console'],
                 'level': 'DEBUG',
+            }
+        }
+    }
+else:
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': False,
+        'handlers': {
+            'slack': {
+                'level': 'ERROR',
+                'class': 'src.loggers.SlackHandler.SlackHandler',
+            },
+        },
+        'loggers': {
+            'django.request': {
+                'handlers': ['slack'],
+                'level': 'ERROR',
             }
         }
     }

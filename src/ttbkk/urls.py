@@ -19,6 +19,7 @@ from django.urls import path, include
 from rest_framework import routers
 
 from src.apps.brand.views import BrandViewSet
+from src.apps.common.healthcheck import healthcheck
 from src.apps.place.views import PlaceViewSet
 from src.ttbkk import settings
 
@@ -29,6 +30,7 @@ router.register(r'brands', BrandViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/healthcheck/', healthcheck)
 ]
 
 if settings.DEBUG:
