@@ -68,10 +68,10 @@ class PlaceViewSet(viewsets.ModelViewSet):
         [bottom_left_x, bottom_left_y] = bottom_left.split(',')
         [top_right_x, top_right_y] = top_right.split(',')
 
-        if (0.2 > abs(float(bottom_left_y) - float(top_right_y))
-            or abs(float(bottom_left_y) - float(top_right_y)) > 1) \
-                and (0.2 > abs(float(top_right_x) - float(bottom_left_x))
-                     or abs(float(top_right_x) - float(bottom_left_x)) > 1):
+        if (0.2 > abs(float(bottom_left_y) - float(top_right_y))) \
+                or (abs(float(bottom_left_y) - float(top_right_y)) > 1) \
+                or (0.2 > abs(float(top_right_x) - float(bottom_left_x))) \
+                or (abs(float(top_right_x) - float(bottom_left_x)) > 1):
             return Response(data='grid size must be smaller or equal than 1', status=status.HTTP_400_BAD_REQUEST)
 
         bottom_left = bottom_left.split(',')
