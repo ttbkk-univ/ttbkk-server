@@ -34,6 +34,7 @@ class PlaceSimpleResponseSerializer(serializers.Serializer):
     name = serializers.CharField()
     brand_id = serializers.UUIDField()
     brand = BrandResponseForPlaceSerializer(many=False, read_only=True)
+    hashtags = HashtagResponseSerializer(many=True, read_only=True)
 
 
 class PlacePageResponseSerializer(serializers.Serializer):
