@@ -6,7 +6,7 @@ from src.utils.map import get_latlng
 
 
 class DalDdukCrawler(BaseCrawler):
-    base_url = 'https://daldduk.com/findstore'
+    base_url = 'https://daldduk.com/store/?page='
     page_number = 1
     brand = None
 
@@ -14,31 +14,28 @@ class DalDdukCrawler(BaseCrawler):
         self.brand_name = '달토끼의떡볶이흡입구역'
 
     def set_next_page(self):
-        self.url = self.base_url
-        if self.page_number == 1:
-            is_success = False
-            while not is_success:
+        self.url = self.base_url + str(self.page_number)
+        is_success = False
+        while not is_success:
+            try:
                 self.driver.get(self.url)
-                try:
-                    time.sleep(3)
-                    is_success = True
-                except Exception as e:
-                    self.driver = setup_chrome()
-                    continue
-        else:
-            self.driver.execute_script('procStoremapGetItemList(%s);' % self.page_number)
-            time.sleep(1)
+                time.sleep(3)
+            except Exception as e:
+                print(e)
+                self.driver = setup_chrome()
+                continue
+            is_success = True
         self.page_number += 1
 
     def get_place_data(self):
-        try:
-            elements = self.driver.find_elements_by_xpath('//*[@id="content"]/div/section[2]/div[2]/ul/li')
-        except:
+        place_cnt = self.driver.find_element_by_xpath('/html/body/div[6]/main/div/div[2]/div/div/div/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/span').text
+        if int(place_cnt) < (10 * (self.page_number - 1)):
             return []
 
+        elements = self.driver.find_elements_by_xpath('/html/body/div[6]/main/div/div[2]/div/div/div/div[2]/div[1]/div[2]/div')
         places = []
         for element in elements:
-            place_name = element.find_element_by_xpath('./div/div[2]/div[1]').text
+            place_name = element.find_element_by_xpath('./div/a[2]/div/div').text
             splited_name = place_name.split('달토끼의떡볶이흡입구역 ')
             if len(splited_name) > 1:
                 place_name = ' '.join(splited_name[1:])
@@ -46,8 +43,8 @@ class DalDdukCrawler(BaseCrawler):
             if len(splited_name) > 1:
                 place_name = ' '.join(splited_name[1:])
             name = '%s %s' % (self.brand_name, place_name)
-            address = element.find_element_by_xpath('./div/div[2]/div[2]').text
-            telephone = element.find_element_by_xpath('./div/div[2]/div[3]').text
+            address = element.find_element_by_xpath('./div/div[1]/p[1]').text
+            telephone = element.find_element_by_xpath('./div/div[1]/p[2]').text
             latitude, longitude = get_latlng(address.split('(')[0], name)
             print('[%s] %s %s (%s,%s)' % (name, address, telephone, latitude, longitude))
             if not latitude or not longitude:

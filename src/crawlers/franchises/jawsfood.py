@@ -15,7 +15,7 @@ class JawsFoodCrawler(BaseCrawler):
 
     def set_next_page(self):
         self.url = self.base_url
-        self.last_page = True
+        self.last_page = bool(self.brand)
         is_success = False
         while not is_success:
             try:
