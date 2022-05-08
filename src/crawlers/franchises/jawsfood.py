@@ -6,16 +6,15 @@ from src.utils.map import get_latlng
 
 
 class JawsFoodCrawler(BaseCrawler):
-    base_url = 'http://www.jawsfood.co.kr/store/store_search.html'
+    base_url = 'http://www.jawsfood.co.kr/store/store_list.html?bs=&sf=&ss=&pg='
     brand = None
-    last_page = None
+    page_number = 1
 
     def __init__(self):
         self.brand_name = '죠스떡볶이'
 
     def set_next_page(self):
-        self.url = self.base_url
-        self.last_page = True
+        self.url = self.base_url + str(self.page_number)
         is_success = False
         while not is_success:
             try:
@@ -25,22 +24,26 @@ class JawsFoodCrawler(BaseCrawler):
                 self.driver = setup_chrome()
                 continue
             is_success = True
+        self.page_number += 1
 
     def get_place_data(self):
-        if self.last_page:
+        try:
+            elements = self.driver.find_elements_by_xpath('//*[@id="contents"]/div/div[2]/ul/li')
+        except:
             return []
-        elements = self.driver.find_elements_by_xpath('//*[@id="datalist"]/li')
         places = []
         for element in elements:
-            place_name = str(element.find_element_by_xpath('./a/p[1]').text)
+            place_name = str(element.find_element_by_xpath('./div/div/a').text)
             name = '%s %s' % (self.brand_name, place_name)
-            address = element.find_element_by_xpath('./a/p[2]').text
+            address = element.find_element_by_xpath('./div/div/div/dl[1]/dd').text
+            telephone = element.find_element_by_xpath('./div/div/div/dl[2]/dd').text
             print(name)
             latitude, longitude = get_latlng(address, name)
             if not latitude or not longitude:
                 print('[failed] %s\n%s' % (name, address))
                 continue
-            places.append(Place(name=name, address=address, latitude=latitude, longitude=longitude,
+            places.append(Place(name=name, address=address, telephone=telephone,
+                                latitude=latitude, longitude=longitude,
                                 brand=self.get_brand()))
             time.sleep(0.5)
         return places
