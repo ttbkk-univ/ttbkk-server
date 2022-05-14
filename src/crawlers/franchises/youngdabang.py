@@ -39,6 +39,8 @@ class YoungDaBangCrawler(BaseCrawler):
             print(place_name)
             if place_name.startswith('NEW'):
                 place_name = place_name.split('NEW')[1]
+            if place_name.endswith('점점'):
+                place_name = place_name[:len(place_name) - 1]
             name = '%s %s' % (self.brand_name, place_name)
             telephone = element.find_element_by_xpath('./p[3]').text
             address = element.find_element_by_xpath('./p[2]').text
