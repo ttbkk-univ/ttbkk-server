@@ -102,7 +102,7 @@ def run():
         FranchiseType.DOOKKI,
         FranchiseType.KANG,
         FranchiseType.ESOTTUK,
-        FranchiseType.ZZING,
+        # FranchiseType.ZZING,
     ])
 
     threads = []
