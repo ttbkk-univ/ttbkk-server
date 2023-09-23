@@ -1,3 +1,4 @@
+import re
 import time
 
 import requests
@@ -5,15 +6,46 @@ import requests
 import env
 
 
+def parse_address(address):
+    # 괄호로 묶여있는거 전부 날려줘
+    regex = r'\(.*\)'
+    address = re.sub(regex, '', address)
+
+    # 몇동 몇호인지 전부 날려줘
+    # 동으로 끝나는 문자열
+    regex = r'[\w\d,-]+동\b'
+    address = re.sub(regex, '', address)
+
+    # 호로 끝나는 문자열
+    regex = r'[\w\d,-]+호\b'
+    address = re.sub(regex, '', address)
+
+    # 건물 이라는 단어 없애줘
+    regex = r' 건물'
+    address = re.sub(regex, '', address)
+
+    # 지하1층 같은 단어가 있다면 그 단어 포함 뒷부분을 전부 날려줘
+    regex = r'[지하]?\d층.*'
+    address = re.sub(regex, '', address)
+
+    address = address.rstrip()
+    if address.endswith(','):
+        address = address[:-1]
+
+    print(address)
+    return address
+
+
 def get_latlng(road_address, place_name):
+    address = parse_address(road_address)
     try:
-        lat, lng = get_latlng_with_kakao(road_address, place_name)
+        lat, lng = get_latlng_with_kakao(address, place_name)
         if lat and lng:
             return lat, lng
     except:
         pass
     try:
-        lat, lng = get_lanlng_with_google(road_address)
+        lat, lng = get_lanlng_with_google(address)
         if lat and lng:
             return lat, lng
     except:

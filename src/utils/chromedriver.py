@@ -16,6 +16,6 @@ def setup_chrome():
         service=ChromeService(ChromeDriverManager().install()),
         options=chrome_options,
     )
-    time.sleep(5)
+    time.sleep(1)
     print('Initialize ChromeDriver Complete...')
     return driver

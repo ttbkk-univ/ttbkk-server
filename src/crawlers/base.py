@@ -9,8 +9,8 @@ class BaseCrawler:
     crawler_name = None
     brand_name = None
     brand = None
-    driver: WebDriver = setup_chrome()
     url = None
+    driver = None
 
     def _set_brand(self):
         if not self.brand_name:
@@ -32,7 +32,8 @@ class BaseCrawler:
 
     def run(self):
         if not self.driver:
-            raise ModuleNotFoundError('selenium driver required')
+            self.driver = setup_chrome()
+        self.driver.switch_to.new_window('window')
         while True:
             self.set_next_page()
             print(self.url)
