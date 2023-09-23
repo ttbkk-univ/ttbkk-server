@@ -3,6 +3,7 @@ from src.apps.place.models import Place
 from src.crawlers.base import BaseCrawler
 from src.utils.chromedriver import setup_chrome
 from src.utils.map import get_latlng
+from selenium.webdriver.common.by import By
 
 
 class TteokChamCrawler(BaseCrawler):
@@ -31,17 +32,17 @@ class TteokChamCrawler(BaseCrawler):
         self.page_number += 1
 
     def get_place_data(self):
-        elements = self.driver.find_elements_by_xpath('//*[@id="sb-list"]/table/tbody/tr')
-        if elements[0].find_element_by_xpath('./td').text == '매장이 없습니다.':
+        elements = self.driver.find_elements(by=By.XPATH, value=('//*[@id="sb-list"]/table/tbody/tr'))
+        if elements[0].find_element(by=By.XPATH, value='./td').text == '매장이 없습니다.':
             return []
 
         places = []
         for element in elements:
-            place_name = element.find_element_by_xpath('./td[1]').text
+            place_name = element.find_element(by=By.XPATH, value='./td[1]').text
 
             name = '%s %s' % (self.brand_name, place_name)
-            address = element.find_element_by_xpath('./td[2]').text
-            telephone = element.find_element_by_xpath('./td[3]').text
+            address = element.find_element(by=By.XPATH, value='./td[2]').text
+            telephone = element.find_element(by=By.XPATH, value='./td[3]').text
 
             latitude, longitude = get_latlng(address, name)
             print('[%s] %s %s (%s,%s)' % (name, address, telephone, latitude, longitude))

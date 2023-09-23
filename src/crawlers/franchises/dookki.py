@@ -5,6 +5,7 @@ from src.apps.place.models import Place
 from src.crawlers.base import BaseCrawler
 from src.utils.chromedriver import setup_chrome
 from src.utils.map import get_latlng
+from selenium.webdriver.common.by import By
 
 
 class DookkiCrawler(BaseCrawler):
@@ -29,21 +30,21 @@ class DookkiCrawler(BaseCrawler):
 
     def get_place_data(self) -> [Place]:
         try:
-            elements = self.driver.find_elements_by_xpath('//*[@id="fboardlist"]/div/table/tbody/tr')
+            elements = self.driver.find_elements(by=By.XPATH, value=('//*[@id="fboardlist"]/div/table/tbody/tr'))
             time.sleep(1)
-            if elements[0].find_element_by_xpath('./td').text == '게시물이 없습니다.':
+            if elements[0].find_element(by=By.XPATH, value='./td').text == '게시물이 없습니다.':
                 return []
         except:
             print('추가 데이터가 없습니다.')
             return []
         places = []
         for element in elements:
-            name = element.find_element_by_xpath('./td[3]').text
+            name = element.find_element(by=By.XPATH, value='./td[3]').text
             if '두끼 ' in name:
                 name = name.split('두끼 ')[1]
             name = '%s %s' % (self.brand_name, name.split('(')[0])
-            address = element.find_element_by_xpath('./td[4]').text
-            telephone = element.find_element_by_xpath('./td[5]').text
+            address = element.find_element(by=By.XPATH, value='./td[4]').text
+            telephone = element.find_element(by=By.XPATH, value='./td[5]').text
             latitude, longitude = get_latlng(address.split(',')[0], name)
             print('[%s] %s\n%s (%s, %s)' % (name, telephone, address, latitude, longitude))
             if not latitude or not longitude:

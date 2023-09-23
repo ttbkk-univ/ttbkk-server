@@ -6,12 +6,18 @@ import env
 
 
 def get_latlng(road_address, place_name):
-    lat, lng = get_latlng_with_kakao(road_address, place_name)
-    if lat and lng:
-        return lat, lng
-    lat, lng = get_lanlng_with_google(road_address)
-    if lat and lng:
-        return lat, lng
+    try:
+        lat, lng = get_latlng_with_kakao(road_address, place_name)
+        if lat and lng:
+            return lat, lng
+    except:
+        pass
+    try:
+        lat, lng = get_lanlng_with_google(road_address)
+        if lat and lng:
+            return lat, lng
+    except:
+        pass
     print('주소를 찾지 못했습니다. 수동으로 넣어주세요.')
     return None, None
 

@@ -3,6 +3,7 @@ from src.apps.place.models import Place
 from src.crawlers.base import BaseCrawler
 from src.utils.chromedriver import setup_chrome
 from src.utils.map import get_latlng
+from selenium.webdriver.common.by import By
 
 
 class DalDdukCrawler(BaseCrawler):
@@ -28,14 +29,14 @@ class DalDdukCrawler(BaseCrawler):
         self.page_number += 1
 
     def get_place_data(self):
-        place_cnt = self.driver.find_element_by_xpath('/html/body/div[6]/main/div/div[2]/div/div/div/div[2]/div[1]/div[1]/div[1]/div[1]/div[1]/span').text
-        if int(place_cnt) < (10 * (self.page_number - 1)):
+        try:
+            elements = self.driver.find_elements(by=By.XPATH, value=('//*[@id="content"]/div/section[2]/div[2]/ul/li'))
+        except:
             return []
 
-        elements = self.driver.find_elements_by_xpath('/html/body/div[6]/main/div/div[2]/div/div/div/div[2]/div[1]/div[2]/div')
         places = []
         for element in elements:
-            place_name = element.find_element_by_xpath('./div/a[2]/div/div').text
+            place_name = element.find_element(by=By.XPATH, value='./div/div[2]/div[1]').text
             splited_name = place_name.split('달토끼의떡볶이흡입구역 ')
             if len(splited_name) > 1:
                 place_name = ' '.join(splited_name[1:])
@@ -43,8 +44,8 @@ class DalDdukCrawler(BaseCrawler):
             if len(splited_name) > 1:
                 place_name = ' '.join(splited_name[1:])
             name = '%s %s' % (self.brand_name, place_name)
-            address = element.find_element_by_xpath('./div/div[1]/p[1]').text
-            telephone = element.find_element_by_xpath('./div/div[1]/p[2]').text
+            address = element.find_element(by=By.XPATH, value='./div/div[2]/div[2]').text
+            telephone = element.find_element(by=By.XPATH, value='./div/div[2]/div[3]').text
             latitude, longitude = get_latlng(address.split('(')[0], name)
             print('[%s] %s %s (%s,%s)' % (name, address, telephone, latitude, longitude))
             if not latitude or not longitude:

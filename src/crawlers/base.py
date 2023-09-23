@@ -1,6 +1,7 @@
 from src.apps.brand.models import Brand
 from src.apps.place.models import Place
 from src.utils.chromedriver import setup_chrome
+from selenium.webdriver.chrome.webdriver import WebDriver
 
 
 class BaseCrawler:
@@ -8,7 +9,7 @@ class BaseCrawler:
     crawler_name = None
     brand_name = None
     brand = None
-    driver = setup_chrome()
+    driver: WebDriver = setup_chrome()
     url = None
 
     def _set_brand(self):

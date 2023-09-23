@@ -30,7 +30,7 @@ router.register(r'brands', BrandViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api/healthcheck/', healthcheck)
+    path('api/healthcheck/', healthcheck),
 ]
 
 if settings.DEBUG:
