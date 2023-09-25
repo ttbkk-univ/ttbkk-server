@@ -29,20 +29,21 @@ class JawsFoodCrawler(BaseCrawler):
 
     def get_place_data(self):
         try:
-            elements = self.driver.find_elements(by=By.XPATH, value=('//*[@id="datalist"]/li'))
+            elements = self.driver.find_elements(by=By.XPATH, value=('//*[@id="contents"]/div/div[2]/ul/li'))
         except:
             return []
         places = []
         for element in elements:
-            place_name = str(element.find_element(by=By.XPATH, value='./a/p[1]').text)
+            place_name = str(element.find_element(by=By.XPATH, value='./div/div/a').text)
             name = '%s %s' % (self.brand_name, place_name)
-            address = element.find_element(by=By.XPATH, value='./a/p[2]').text
+            address = element.find_element(by=By.XPATH, value='./div/div/div/dl[1]/dd').text
+            telephone = element.find_element(by=By.XPATH, value='./div/div/div/dl[2]/dd').text
             print(name)
             latitude, longitude = get_latlng(address, name)
             if not latitude or not longitude:
                 print('[failed] %s\n%s' % (name, address))
                 continue
-            places.append(Place(name=name, address=address,
+            places.append(Place(name=name, address=address, telephone=telephone,
                                 latitude=latitude, longitude=longitude,
                                 brand=self.get_brand()))
             time.sleep(0.5)

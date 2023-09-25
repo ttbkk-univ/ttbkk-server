@@ -86,10 +86,10 @@ def get_crawlers(types):
 
 def run():
     crawlers = get_crawlers([
-        # FranchiseType.JAWSFOOD,
-        # FranchiseType.DALDDUK,
-        # FranchiseType.KANG,
 
+        # FranchiseType.KANG,
+        # FranchiseType.DALDDUK,
+        # FranchiseType.JAWSFOOD,
         # FranchiseType.EUNGDDUK,
         # FranchiseType.SINBUL,
         # FranchiseType.SINCHAM,
