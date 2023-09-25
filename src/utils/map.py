@@ -13,11 +13,11 @@ def parse_address(address):
 
     # 몇동 몇호인지 전부 날려줘
     # 동으로 끝나는 문자열
-    regex = r'[\w\d,-]+동\b'
+    regex = r'[a-zA-Z\d,-]+동\b'
     address = re.sub(regex, '', address)
 
     # 호로 끝나는 문자열
-    regex = r'[\w\d,-]+호\b'
+    regex = r'[a-zA-Z\d,-]+호\b'
     address = re.sub(regex, '', address)
 
     # 건물 이라는 단어 없애줘
