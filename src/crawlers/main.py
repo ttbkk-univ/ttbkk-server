@@ -86,15 +86,15 @@ def get_crawlers(types):
 
 def run():
     crawlers = get_crawlers([
-        FranchiseType.YOUNGDABANG,
-        # FranchiseType.SINCHAM,
-        # FranchiseType.SINBUL,
-        # FranchiseType.EUNGDDUK,
         # FranchiseType.JAWSFOOD,
         # FranchiseType.DALDDUK,
         # FranchiseType.KANG,
-        # FranchiseType.ESOTTUK,
 
+        # FranchiseType.EUNGDDUK,
+        # FranchiseType.SINBUL,
+        # FranchiseType.SINCHAM,
+        # FranchiseType.ESOTTUK,
+        # FranchiseType.YOUNGDABANG,
         # FranchiseType.DOOKKI,
         # FranchiseType.SINJEON,
         # FranchiseType.GAMTAN,

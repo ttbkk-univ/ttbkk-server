@@ -16,7 +16,6 @@ class SinBulCrawler(BaseCrawler):
 
     def set_next_page(self):
         self.url = self.base_url
-        self.is_last_page = True
         is_success = False
         while not is_success:
             try:
@@ -49,4 +48,5 @@ class SinBulCrawler(BaseCrawler):
                                 telephone=telephone, brand=self.get_brand()))
             time.sleep(0.5)
             num += 1
+        self.is_last_page = True
         return places

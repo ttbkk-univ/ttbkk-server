@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 
 
 class EungDdukCrawler(BaseCrawler):
-    base_url = 'http://www.eungdduk.kr/sub/store.php?ptype=&code=store&page='
+    base_url = 'http://www.eungdduk.kr/bbs/board.php?bo_table=store2&sca=%EC%9D%91%EA%B8%89%EC%8B%A4+%EA%B5%AD%EB%AC%BC+%EB%96%A1%EB%B3%B6%EC%9D%B4'
     page_number = 1
     brand = None
     last_page = None
@@ -17,12 +17,12 @@ class EungDdukCrawler(BaseCrawler):
         self.brand_name = '응급실국물떡볶이'
 
     def set_next_page(self):
-        self.url = self.base_url + str(self.page_number)
+        self.url = self.base_url
         is_success = False
         while not is_success:
             try:
                 self.driver.get(self.url)
-                time.sleep(3)
+                time.sleep(10)
             except Exception as e:
                 self.driver = setup_chrome()
                 continue
@@ -30,26 +30,20 @@ class EungDdukCrawler(BaseCrawler):
         self.page_number += 1
 
     def get_place_data(self):
-        if not self.last_page:
-            last_page_link = str(self.driver.find_element(by=By.XPATH, value='//*[@id="section-1"]/div/div/table[2]/tbody/tr/td/table/tbody/tr/td/table/tbody/tr/td[5]/a').get_attribute('href'))
-            query_params = parse.parse_qs(last_page_link.split('?')[1])
-            self.last_page = int(query_params['page'][0])
-        elif self.page_number - 1 > self.last_page:
+        if self.last_page:
             return []
 
-        elements = self.driver.find_elements(by=By.XPATH, value=('//*[@id="section-1"]/div/div/table[1]/tbody/tr'))
+        elements = self.driver.find_elements(by=By.XPATH, value=('//*[@id="fboardlist"]/ul/li'))
         places = []
-        row_num = 0
         for element in elements:
-            row_num += 1
-            if row_num % 2 == 1:
-                continue
-            place_name = str(element.find_element(by=By.XPATH, value='./td[2]/a').text)
+            place_name = str(element.find_element(by=By.XPATH, value='./div/div[1]').text)
             if place_name.startswith('(오픈준비중)'):
                 place_name = place_name.split('(오픈준비중)')[1]
             name = '%s %s' % (self.brand_name, place_name)
-            telephone = element.find_element(by=By.XPATH, value='./td[4]/a').text
-            address = element.find_element(by=By.XPATH, value='./td[3]/a').text
+
+            address_and_telephone = element.find_element(by=By.XPATH, value='./div/div[2]').text
+            address = address_and_telephone.split('\n')[0]
+            telephone = address_and_telephone.split('\n')[1].replace('TEL : ', '')
             print(name)
             latitude, longitude = get_latlng(address, name)
             if not latitude or not longitude:
@@ -58,4 +52,5 @@ class EungDdukCrawler(BaseCrawler):
             places.append(Place(name=name, address=address, latitude=latitude, longitude=longitude,
                                 telephone=telephone, brand=self.get_brand()))
             time.sleep(0.5)
+        self.last_page = True
         return places
