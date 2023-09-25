@@ -1,6 +1,7 @@
 from src.apps.brand.models import Brand
 from src.apps.place.models import Place
 from src.utils.chromedriver import setup_chrome
+from selenium.webdriver.chrome.webdriver import WebDriver
 
 
 class BaseCrawler:
@@ -8,8 +9,8 @@ class BaseCrawler:
     crawler_name = None
     brand_name = None
     brand = None
-    driver = setup_chrome()
     url = None
+    driver = None
 
     def _set_brand(self):
         if not self.brand_name:
@@ -31,7 +32,8 @@ class BaseCrawler:
 
     def run(self):
         if not self.driver:
-            raise ModuleNotFoundError('selenium driver required')
+            self.driver = setup_chrome()
+        self.driver.switch_to.new_window('window')
         while True:
             self.set_next_page()
             print(self.url)

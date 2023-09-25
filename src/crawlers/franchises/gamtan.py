@@ -5,6 +5,7 @@ from src.apps.place.models import Place
 from src.crawlers.base import BaseCrawler
 from src.utils.chromedriver import setup_chrome
 from src.utils.map import get_latlng
+from selenium.webdriver.common.by import By
 
 
 class GamtanCrawler(BaseCrawler):
@@ -29,9 +30,9 @@ class GamtanCrawler(BaseCrawler):
 
     def get_place_data(self) -> [Place]:
         try:
-            elements = self.driver.find_elements_by_xpath('//*[@id="content"]/section/div[2]/div/div[2]/div/table/tbody/tr')
+            elements = self.driver.find_elements(by=By.XPATH, value=('//*[@id="content"]/section/div[2]/div/div[2]/div/table/tbody/tr'))
             time.sleep(1)
-            if elements[0].find_element_by_xpath('./td').text == '등록된 매장이 없습니다.':
+            if elements[0].find_element(by=By.XPATH, value='./td').text == '등록된 매장이 없습니다.':
                 return []
         except:
             print('추가 데이터가 없습니다.')
@@ -40,9 +41,9 @@ class GamtanCrawler(BaseCrawler):
         num = 1
         for element in elements:
             print(num)
-            name = '%s %s' % (self.brand_name, element.find_element_by_xpath('./td[1]/span').text.split('-')[1])
-            address = element.find_element_by_xpath('./td[2]/span').text
-            telephone = element.find_element_by_xpath('./td[3]/a').text
+            name = '%s %s' % (self.brand_name, element.find_element(by=By.XPATH, value='./td[1]/span').text.split('-')[1])
+            address = element.find_element(by=By.XPATH, value='./td[2]/span').text
+            telephone = element.find_element(by=By.XPATH, value='./td[3]/a').text
             latitude, longitude = get_latlng(address.split('(')[0], name)
             if not latitude or not longitude:
                 print('[failed] %s\n%s\n%s' % (name, address, telephone))

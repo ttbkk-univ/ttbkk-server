@@ -1,5 +1,8 @@
 from enum import Enum
+from threading import Thread
 
+import env
+from manage import main
 from src.crawlers.franchises.baedduck import BaeDduckCrawler
 from src.crawlers.franchises.daldduk import DalDdukCrawler
 from src.crawlers.franchises.dookki import DookkiCrawler
@@ -83,23 +86,45 @@ def get_crawlers(types):
 
 def run():
     crawlers = get_crawlers([
+
+        # FranchiseType.KANG,
+        # FranchiseType.DALDDUK,
+        # FranchiseType.JAWSFOOD,
+        # FranchiseType.EUNGDDUK,
+        # FranchiseType.SINBUL,
+        # FranchiseType.SINCHAM,
+        # FranchiseType.ESOTTUK,
+        # FranchiseType.YOUNGDABANG,
+        # FranchiseType.DOOKKI,
         # FranchiseType.SINJEON,
         # FranchiseType.GAMTAN,
         # FranchiseType.YUPDDUK,
         # FranchiseType.BAEDDUCK,
         # FranchiseType.MYUNGRANG,
-        # FranchiseType.YOUNGDABANG,
-        # FranchiseType.SINCHAM,
-        # FranchiseType.SINBUL,
-        # FranchiseType.EUNGDDUK,
-        # FranchiseType.JAWSFOOD,
         # FranchiseType.TTEOKCHAM,
         # FranchiseType.SAMCHEOP,
-        # FranchiseType.DALDDUK,
-        # FranchiseType.DOOKKI,
-        # FranchiseType.KANG,
-        # FranchiseType.ESOTTUK,
-        FranchiseType.ZZING,
+        # FranchiseType.ZZING,
     ])
-    for crawler in crawlers:
-        crawler.run()
+
+    if env.MULTI_THREAD_MODE:
+        threads = []
+        for crawler in crawlers:
+            try:
+                thread = Thread(target=crawler.run)
+                thread.start()
+                threads.append(thread)
+            except Exception as e:
+                print(e)
+                continue
+        for thread in threads:
+            thread.join()
+
+    else:
+        for crawler in crawlers:
+            try:
+                crawler.run()
+            except Exception as e:
+                print(e)
+                continue
+
+    print('done')
