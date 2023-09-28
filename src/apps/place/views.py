@@ -78,8 +78,10 @@ class PlaceViewSet(viewsets.ModelViewSet):
         top_right = top_right.split(',')
 
         queryset = self.get_queryset().select_related('brand').prefetch_related('hashtags', 'brand__hashtags')
-        places = queryset.filter(latitude__range=(bottom_left[0], top_right[0]),
-                                 longitude__range=(bottom_left[1], top_right[1]))
+        places = queryset.filter(
+            latitude__range=(bottom_left[0], top_right[0]),
+            longitude__range=(bottom_left[1], top_right[1]),
+        )
         count = places.count()
 
         response_serializer = PlacePageResponseSerializer(dict(edges=places, count=count), many=False)
@@ -105,13 +107,15 @@ class PlaceViewSet(viewsets.ModelViewSet):
     def count(self, request, *args, **kwargs):
         bottom_left = self.request.query_params.get('bottom_left')
         top_right = self.request.query_params.get('top_right')
-        queryset = self.get_queryset().select_related('brand').prefetch_related('hashtags', 'brand__hashtags')
+        queryset = self.get_queryset()
 
         if bottom_left and top_right and len(bottom_left.split(',')) == 2 and len(top_right.split(',')) == 2:
             bottom_left = bottom_left.split(',')
             top_right = top_right.split(',')
-            queryset = queryset.filter(latitude__range=(bottom_left[0], top_right[0]),
-                                       longitude__range=(bottom_left[1], top_right[1]))
+            queryset = queryset.filter(
+                latitude__range=(bottom_left[0], top_right[0]),
+                longitude__range=(bottom_left[1], top_right[1]),
+            )
 
         place_cnt = queryset.count()
         return Response(data=place_cnt, status=status.HTTP_200_OK)
