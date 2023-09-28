@@ -105,7 +105,7 @@ def get_latlng_with_kakao_by_road_address(road_address, place_name):
 
 
 def get_latlng_with_kakao(road_address, place_name):
-    lat, lng = get_latlng_with_kakao_by_name(place_name)
+    lat, lng = get_latlng_with_kakao_by_name('%s %s' % (place_name, road_address.split()[0]))
     if lat and lng:
         return lat, lng
     return get_latlng_with_kakao_by_road_address(road_address, place_name)

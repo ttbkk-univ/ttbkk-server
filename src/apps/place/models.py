@@ -37,3 +37,7 @@ class Place(models.Model):
 
     def __str__(self):
         return self.name
+
+    @property
+    def unique_key(self):
+        return '%s-%s-%s' % (self.brand_id, self.address.split()[0], self.name)

@@ -41,10 +41,13 @@ class BaseCrawler:
             if not len(places):
                 break
             place_names = [place.name for place in places]
-            exist_places = Place.objects.filter(name__in=place_names)
+            place_unique_keys = [place.unique_key for place in places]
+            exist_match_places = Place.objects.filter(name__in=place_names)
+            exist_places = [place for place in exist_match_places if place.unique_key in place_unique_keys]
+
             for exist_place in exist_places:
                 for place in places:
-                    if place.name == exist_place.name:
+                    if place.unique_key == exist_place.unique_key:
                         exist_place.description = place.description
                         exist_place.address = place.address
                         exist_place.telephone = place.telephone
