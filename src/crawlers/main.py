@@ -1,29 +1,7 @@
 from enum import Enum
 from threading import Thread
-
-<<<<<<< Updated upstream
 import env
-from manage import main
-from src.crawlers.franchises.baedduck import BaeDduckCrawler
-from src.crawlers.franchises.daldduk import DalDdukCrawler
-from src.crawlers.franchises.dookki import DookkiCrawler
-from src.crawlers.franchises.esottuk import EsottukCrawler
-from src.crawlers.franchises.eungdduk import EungDdukCrawler
-from src.crawlers.franchises.gamtan import GamtanCrawler
-from src.crawlers.franchises.jawsfood import JawsFoodCrawler
-from src.crawlers.franchises.kang import KangCrawler
-from src.crawlers.franchises.myungranghotdog import MyungrangHotDogCrawler
-from src.crawlers.franchises.samcheop import SamCheopCrawler
-from src.crawlers.franchises.sinbul import SinBulCrawler
-from src.crawlers.franchises.sincham import SinChamCrawler
-from src.crawlers.franchises.sinjeon import SinjeonCrawler
-from src.crawlers.franchises.tteokcham import TteokChamCrawler
-from src.crawlers.franchises.youngdabang import YoungDaBangCrawler
-from src.crawlers.franchises.yupdduk import YupddukCrawler
-from src.crawlers.franchises.zzing import ZzingCrawler
 
-=======
->>>>>>> Stashed changes
 
 class FranchiseType(Enum):
     SINJEON = '신전'
@@ -54,26 +32,6 @@ def get_crawlers(types):
 
 def run():
     crawlers = get_crawlers([
-<<<<<<< Updated upstream
-
-        # FranchiseType.KANG,
-        # FranchiseType.DALDDUK,
-        # FranchiseType.JAWSFOOD,
-        # FranchiseType.EUNGDDUK,
-        # FranchiseType.SINBUL,
-        # FranchiseType.SINCHAM,
-        # FranchiseType.ESOTTUK,
-        # FranchiseType.YOUNGDABANG,
-        # FranchiseType.DOOKKI,
-        # FranchiseType.SINJEON,
-        # FranchiseType.GAMTAN,
-        # FranchiseType.YUPDDUK,
-        # FranchiseType.BAEDDUCK,
-        # FranchiseType.MYUNGRANG,
-        # FranchiseType.TTEOKCHAM,
-        # FranchiseType.SAMCHEOP,
-        # FranchiseType.ZZING,
-=======
         FranchiseType.BAEDDUCK,
         FranchiseType.DALDDUK,
         FranchiseType.DOOKKI,
@@ -91,7 +49,6 @@ def run():
         FranchiseType.YOUNGDABANG,
         FranchiseType.YUPDDUK,
         FranchiseType.ZZING,
->>>>>>> Stashed changes
     ])
 
     if env.MULTI_THREAD_MODE:
