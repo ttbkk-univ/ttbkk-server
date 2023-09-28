@@ -47,20 +47,33 @@ class PlaceCreateSerializer(serializers.Serializer):
     latitude = serializers.FloatField()
     longitude = serializers.FloatField()
     description = serializers.CharField(max_length=500, allow_blank=True, allow_null=True)
-    brand_name = serializers.CharField(max_length=150)
+    brand_name = serializers.CharField(max_length=150, allow_blank=True, allow_null=True)
     hashtags = HashtagListSerializer(allow_empty=True, allow_null=True)
 
     def create(self, validated_data):
-        brand, created = Brand.objects.get_or_create(name=validated_data['brand_name'])
+        brand_name_input = validated_data.get('brand_name')
+        brand = None
+        if brand_name_input:
+            brand, created = Brand.objects.get_or_create(name=brand_name_input)
+
+        hashtags_input = validated_data.get('hashtags')
         hashtags = []
-        for name in validated_data['hashtags']:
-            hashtag, created = Hashtag.objects.get_or_create(name=name)
-            hashtags.append(hashtag)
-        place = Place.objects.create(name=validated_data['name'], latitude=validated_data['latitude'],
-                                     longitude=validated_data['longitude'], description=validated_data['description'],
-                                     brand=brand)
+        if hashtags_input:
+            for name in hashtags_input:
+                hashtag, created = Hashtag.objects.get_or_create(name=name)
+                hashtags.append(hashtag)
+
+        place = Place.objects.create(
+            name=validated_data['name'],
+            latitude=validated_data['latitude'],
+            longitude=validated_data['longitude'],
+            description=validated_data['description'],
+            brand=brand,
+        )
+
         for hashtag in hashtags:
             place.hashtags.add(hashtag)
+
         return place
 
     def update(self, instance, validated_data):
