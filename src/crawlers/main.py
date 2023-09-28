@@ -1,6 +1,7 @@
 from enum import Enum
 from threading import Thread
 
+<<<<<<< Updated upstream
 import env
 from manage import main
 from src.crawlers.franchises.baedduck import BaeDduckCrawler
@@ -21,6 +22,8 @@ from src.crawlers.franchises.youngdabang import YoungDaBangCrawler
 from src.crawlers.franchises.yupdduk import YupddukCrawler
 from src.crawlers.franchises.zzing import ZzingCrawler
 
+=======
+>>>>>>> Stashed changes
 
 class FranchiseType(Enum):
     SINJEON = '신전'
@@ -45,47 +48,13 @@ class FranchiseType(Enum):
 def get_crawlers(types):
     crawlers = []
     for crawler_type in types:
-        if crawler_type == FranchiseType.SINJEON:
-            crawlers.append(SinjeonCrawler())
-        elif crawler_type == FranchiseType.GAMTAN:
-            crawlers.append(GamtanCrawler())
-        elif crawler_type == FranchiseType.YUPDDUK:
-            crawlers.append(YupddukCrawler())
-        elif crawler_type == FranchiseType.BAEDDUCK:
-            crawlers.append(BaeDduckCrawler())
-        elif crawler_type == FranchiseType.MYUNGRANG:
-            crawlers.append(MyungrangHotDogCrawler())
-        elif crawler_type == FranchiseType.YOUNGDABANG:
-            crawlers.append(YoungDaBangCrawler())
-        elif crawler_type == FranchiseType.SINCHAM:
-            crawlers.append(SinChamCrawler())
-        elif crawler_type == FranchiseType.SINBUL:
-            crawlers.append(SinBulCrawler())
-        elif crawler_type == FranchiseType.EUNGDDUK:
-            crawlers.append(EungDdukCrawler())
-        elif crawler_type == FranchiseType.JAWSFOOD:
-            crawlers.append(JawsFoodCrawler())
-        elif crawler_type == FranchiseType.TTEOKCHAM:
-            crawlers.append(TteokChamCrawler())
-        elif crawler_type == FranchiseType.SAMCHEOP:
-            crawlers.append(SamCheopCrawler())
-        elif crawler_type == FranchiseType.DALDDUK:
-            crawlers.append(DalDdukCrawler())
-        elif crawler_type == FranchiseType.DOOKKI:
-            crawlers.append(DookkiCrawler())
-        elif crawler_type == FranchiseType.KANG:
-            crawlers.append(KangCrawler())
-        elif crawler_type == FranchiseType.ESOTTUK:
-            crawlers.append(EsottukCrawler())
-        elif crawler_type == FranchiseType.ZZING:
-            crawlers.append(ZzingCrawler())
-        else:
-            raise TypeError('invalid crawler type')
+        crawlers.append(get_crawlers(crawler_type))
     return crawlers
 
 
 def run():
     crawlers = get_crawlers([
+<<<<<<< Updated upstream
 
         # FranchiseType.KANG,
         # FranchiseType.DALDDUK,
@@ -104,6 +73,25 @@ def run():
         # FranchiseType.TTEOKCHAM,
         # FranchiseType.SAMCHEOP,
         # FranchiseType.ZZING,
+=======
+        FranchiseType.BAEDDUCK,
+        FranchiseType.DALDDUK,
+        FranchiseType.DOOKKI,
+        FranchiseType.EUNGDDUK,
+        FranchiseType.ESOTTUK,
+        FranchiseType.GAMTAN,
+        FranchiseType.JAWSFOOD,
+        FranchiseType.KANG,
+        FranchiseType.MYUNGRANG,
+        FranchiseType.SAMCHEOP,
+        FranchiseType.SINBUL,
+        FranchiseType.SINCHAM,
+        FranchiseType.SINJEON,
+        FranchiseType.TTEOKCHAM,
+        FranchiseType.YOUNGDABANG,
+        FranchiseType.YUPDDUK,
+        FranchiseType.ZZING,
+>>>>>>> Stashed changes
     ])
 
     if env.MULTI_THREAD_MODE:
