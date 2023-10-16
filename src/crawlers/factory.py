@@ -1,3 +1,4 @@
+from src.crawlers.franchise_type import FranchiseType
 from src.crawlers.franchises.baedduck import BaeDduckCrawler
 from src.crawlers.franchises.daldduk import DalDdukCrawler
 from src.crawlers.franchises.dookki import DookkiCrawler
@@ -11,11 +12,18 @@ from src.crawlers.franchises.samcheop import SamCheopCrawler
 from src.crawlers.franchises.sinbul import SinBulCrawler
 from src.crawlers.franchises.sincham import SinChamCrawler
 from src.crawlers.franchises.sinjeon import SinjeonCrawler
+from src.crawlers.franchises.terryroze import TerryRozeCrawler
 from src.crawlers.franchises.tteokcham import TteokChamCrawler
 from src.crawlers.franchises.youngdabang import YoungDaBangCrawler
 from src.crawlers.franchises.yupdduk import YupddukCrawler
 from src.crawlers.franchises.zzing import ZzingCrawler
-from src.crawlers.main import FranchiseType
+
+
+def get_crawlers(types):
+    crawlers = []
+    for crawler_type in types:
+        crawlers.append(get_crawler(crawler_type))
+    return crawlers
 
 
 def get_crawler(crawler_type):
@@ -53,5 +61,7 @@ def get_crawler(crawler_type):
         return EsottukCrawler()
     elif crawler_type == FranchiseType.ZZING:
         return ZzingCrawler()
+    elif crawler_type == FranchiseType.TERRYROZE:
+        return TerryRozeCrawler()
     else:
         raise TypeError('invalid crawler type')
