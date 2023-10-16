@@ -31,8 +31,11 @@ class BaseCrawler:
         raise NotImplementedError
 
     def run(self):
-        if not self.driver:
-            self.driver = setup_chrome()
+        while not self.driver:
+            try:
+                self.driver = setup_chrome()
+            except:
+                continue
         self.driver.switch_to.new_window('window')
         while True:
             self.set_next_page()
