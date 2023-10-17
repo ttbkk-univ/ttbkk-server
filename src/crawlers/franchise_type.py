@@ -20,3 +20,4 @@ class FranchiseType(Enum):
     KANG = '크앙'
     ESOTTUK = '이소떡'
     ZZING = '찡떡'
+    BULLS = '불스떡볶이'
