@@ -38,7 +38,7 @@ Full tech stack [here](/techstack.md)
 # Tech Stack File
 ![](https://img.stackshare.io/repo.svg "repo") [ttbkk-univ/ttbkk-server](https://github.com/ttbkk-univ/ttbkk-server)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
-|35<br/>Tools used|12/14/23 <br/>Report generated|
+|35<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|
 </div>
 
@@ -149,7 +149,7 @@ Full tech stack [here](/techstack.md)
 
 |NAME|VERSION|LAST UPDATED|LAST UPDATED BY|LICENSE|VULNERABILITIES|
 |:------|:------|:------|:------|:------|:------|
-|[Django](https://pypi.org/project/Django)|v3.2.2|06/12/21|siner308 |BSD-3-Clause|[CVE-2022-28346](https://github.com/advisories/GHSA-2gwj-7jmv-h26r) (Critical)<br/>[CVE-2022-28347](https://github.com/advisories/GHSA-w24h-v9qh-8gxj) (Critical)<br/>[CVE-2021-35042](https://github.com/advisories/GHSA-xpfp-f569-q3p2) (Critical)<br/>[CVE-2023-31047](https://github.com/advisories/GHSA-r3xc-prgr-mg9p) (Critical)<br/>[CVE-2021-45116](https://github.com/advisories/GHSA-8c5j-9r9f-c6w8) (High)<br/>[CVE-2023-24580](https://github.com/advisories/GHSA-2hrw-hx67-34x6) (High)<br/>[CVE-2022-36359](https://github.com/advisories/GHSA-8x94-hmjh-97hq) (High)<br/>[CVE-2021-45115](https://github.com/advisories/GHSA-53qw-q765-4fww) (High)<br/>[CVE-2021-44420](https://github.com/advisories/GHSA-v6rh-hp5x-86rv) (High)<br/>[CVE-2023-36053](https://github.com/advisories/GHSA-jh3w-4vvf-mjgr) (High)<br/>[CVE-2021-45452](https://github.com/advisories/GHSA-jrh2-hc4r-7jwx) (Moderate)|
+|[Django](https://pypi.org/project/Django)|v3.2.2|06/12/21|siner308 |BSD-3-Clause|[CVE-2023-31047](https://github.com/advisories/GHSA-r3xc-prgr-mg9p) (Critical)<br/>[CVE-2022-28347](https://github.com/advisories/GHSA-w24h-v9qh-8gxj) (Critical)<br/>[CVE-2021-35042](https://github.com/advisories/GHSA-xpfp-f569-q3p2) (Critical)<br/>[CVE-2022-28346](https://github.com/advisories/GHSA-2gwj-7jmv-h26r) (Critical)<br/>[CVE-2023-36053](https://github.com/advisories/GHSA-jh3w-4vvf-mjgr) (High)<br/>[CVE-2021-44420](https://github.com/advisories/GHSA-v6rh-hp5x-86rv) (High)<br/>[CVE-2022-36359](https://github.com/advisories/GHSA-8x94-hmjh-97hq) (High)<br/>[CVE-2023-24580](https://github.com/advisories/GHSA-2hrw-hx67-34x6) (High)<br/>[CVE-2021-45116](https://github.com/advisories/GHSA-8c5j-9r9f-c6w8) (High)<br/>[CVE-2021-45115](https://github.com/advisories/GHSA-53qw-q765-4fww) (High)<br/>[CVE-2021-45452](https://github.com/advisories/GHSA-jrh2-hc4r-7jwx) (Moderate)|
 |[PyYAML](https://pypi.org/project/PyYAML)|v5.4.1|06/12/21|siner308 |MIT|N/A|
 |[asgiref](https://pypi.org/project/asgiref)|v3.3.4|06/12/21|siner308 |BSD-3-Clause|N/A|
 |[certifi](https://pypi.org/project/certifi)|v2021.10.8|04/03/22|siner308 |MPL-2.0|[CVE-2023-37920](https://github.com/advisories/GHSA-xqr8-7jwr-rhp7) (High)<br/>[CVE-2022-23491](https://github.com/advisories/GHSA-43fp-rhv2-5gv8) (Moderate)|
