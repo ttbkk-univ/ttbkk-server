@@ -1,7 +1,8 @@
 repo_name: ttbkk-univ/ttbkk-server
-report_id: 1ba28cb153b60699380f290934a712e2
+report_id: c32548320a2128e0dba01a6c1ab9fd94
+version: 0.1
 repo_type: Public
-timestamp: '2023-12-14T13:10:47+00:00'
+timestamp: '2024-01-05T08:40:13+00:00'
 requested_by: siner308
 provider: github
 branch: develop
@@ -16,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server
   detection_source: Repo Metadata
 - name: MySQL
   description: The world's most popular open source database
@@ -25,6 +27,7 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/1025/logo-mysql-170x170.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
   detection_source: requirements.txt
   last_updated_by: siner308
   last_updated_on: 2021-06-12 14:55:27.000000000 Z
@@ -50,6 +53,7 @@ tools:
   category: Data Stores
   sub_category: Database Tools
   image_url: https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
   detection_source: requirements.txt
   last_updated_by: siner308
   last_updated_on: 2021-06-12 14:55:27.000000000 Z
@@ -62,6 +66,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Virtual Machine Platforms & Containers
   image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server
   detection_source: Repo Metadata
 - name: Git
   description: Fast, scalable, distributed revision control system
@@ -71,6 +76,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server
   detection_source: Repo Metadata
 - name: NGINX
   description: A high performance free open source web server powering busiest sites
@@ -94,6 +100,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Hosted Package Repository
   image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
   detection_source: requirements.txt
   last_updated_by: siner308
   last_updated_on: 2021-06-12 14:55:27.000000000 Z
@@ -105,6 +112,7 @@ tools:
   category: Communications
   sub_category: Large Language Model Tools
   image_url: https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
   detection_source: requirements.txt
   last_updated_by: siner308
   last_updated_on: 2021-06-12 14:55:27.000000000 Z
@@ -117,6 +125,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server
   detection_source: Repo Metadata
 - name: Django
   description: A high-level Python Web framework that encourages rapid development
@@ -134,12 +143,13 @@ tools:
   last_updated_by: siner308
   last_updated_on: 2021-06-12 14:55:27.000000000 Z
   vulnerabilities:
-  - name: SQL Injection in Django
-    cve_id: CVE-2022-28346
-    cve_url: https://github.com/advisories/GHSA-2gwj-7jmv-h26r
-    detected_date: Apr 27
+  - name: Django bypasses validation when using one form field to upload multiple
+      files
+    cve_id: CVE-2023-31047
+    cve_url: https://github.com/advisories/GHSA-r3xc-prgr-mg9p
+    detected_date: May 10
     severity: critical
-    first_patched: 3.2.13
+    first_patched: 3.2.19
   - name: SQL Injection in Django
     cve_id: CVE-2022-28347
     cve_url: https://github.com/advisories/GHSA-w24h-v9qh-8gxj
@@ -152,49 +162,48 @@ tools:
     detected_date: Sep 23
     severity: critical
     first_patched: 3.2.5
-  - name: Django bypasses validation when using one form field to upload multiple
-      files
-    cve_id: CVE-2023-31047
-    cve_url: https://github.com/advisories/GHSA-r3xc-prgr-mg9p
-    detected_date: May 10
+  - name: SQL Injection in Django
+    cve_id: CVE-2022-28346
+    cve_url: https://github.com/advisories/GHSA-2gwj-7jmv-h26r
+    detected_date: Apr 27
     severity: critical
-    first_patched: 3.2.19
-  - name: Information disclosure in Django
-    cve_id: CVE-2021-45116
-    cve_url: https://github.com/advisories/GHSA-8c5j-9r9f-c6w8
-    detected_date: Jan 13
-    severity: high
-    first_patched: 3.2.11
-  - name: Resource exhaustion in Django
-    cve_id: CVE-2023-24580
-    cve_url: https://github.com/advisories/GHSA-2hrw-hx67-34x6
-    detected_date: Feb 16
-    severity: high
-    first_patched: 3.2.18
-  - name: 'Django vulnerable to Reflected File Download attack '
-    cve_id: CVE-2022-36359
-    cve_url: https://github.com/advisories/GHSA-8x94-hmjh-97hq
-    detected_date: Aug 12
-    severity: high
-    first_patched: 3.2.15
-  - name: Denial-of-service in Django
-    cve_id: CVE-2021-45115
-    cve_url: https://github.com/advisories/GHSA-53qw-q765-4fww
-    detected_date: Jan 13
-    severity: high
-    first_patched: 3.2.11
-  - name: Potential bypass of an upstream access control based on URL paths in Django
-    cve_id: CVE-2021-44420
-    cve_url: https://github.com/advisories/GHSA-v6rh-hp5x-86rv
-    detected_date: Dec 14
-    severity: high
-    first_patched: 3.2.10
+    first_patched: 3.2.13
   - name: Django has regular expression denial of service vulnerability in EmailValidator/URLValidator
     cve_id: CVE-2023-36053
     cve_url: https://github.com/advisories/GHSA-jh3w-4vvf-mjgr
     detected_date: Jul 6
     severity: high
     first_patched: 3.2.20
+  - name: Potential bypass of an upstream access control based on URL paths in Django
+    cve_id: CVE-2021-44420
+    cve_url: https://github.com/advisories/GHSA-v6rh-hp5x-86rv
+    detected_date: Dec 14
+    severity: high
+    first_patched: 3.2.10
+  - name: 'Django vulnerable to Reflected File Download attack '
+    cve_id: CVE-2022-36359
+    cve_url: https://github.com/advisories/GHSA-8x94-hmjh-97hq
+    detected_date: Aug 12
+    severity: high
+    first_patched: 3.2.15
+  - name: Resource exhaustion in Django
+    cve_id: CVE-2023-24580
+    cve_url: https://github.com/advisories/GHSA-2hrw-hx67-34x6
+    detected_date: Feb 16
+    severity: high
+    first_patched: 3.2.18
+  - name: Information disclosure in Django
+    cve_id: CVE-2021-45116
+    cve_url: https://github.com/advisories/GHSA-8c5j-9r9f-c6w8
+    detected_date: Jan 13
+    severity: high
+    first_patched: 3.2.11
+  - name: Denial-of-service in Django
+    cve_id: CVE-2021-45115
+    cve_url: https://github.com/advisories/GHSA-53qw-q765-4fww
+    detected_date: Jan 13
+    severity: high
+    first_patched: 3.2.11
   - name: Directory-traversal in Django
     cve_id: CVE-2021-45452
     cve_url: https://github.com/advisories/GHSA-jrh2-hc4r-7jwx
