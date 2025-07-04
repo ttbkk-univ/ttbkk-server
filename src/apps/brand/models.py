@@ -6,9 +6,11 @@ from django.db import models
 from src.apps.hashtag.models import Hashtag
 from src.apps.user.models import User
 
+def generate_uuid_hex():
+    return uuid.uuid4().hex
 
 class Brand(models.Model):
-    id = models.CharField(primary_key=True, max_length=32, default=uuid.uuid4)
+    id = models.CharField(primary_key=True, max_length=32, default=generate_uuid_hex)
     name = models.CharField(max_length=150)
     description = models.TextField(blank=True, null=True)
     hashtags = models.ManyToManyField(Hashtag, blank=True, db_table='brand_hashtags')

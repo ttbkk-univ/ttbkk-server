@@ -1,6 +1,7 @@
 from src.crawlers.franchise_type import FranchiseType
 from src.crawlers.franchises.baedduck import BaeDduckCrawler
 from src.crawlers.franchises.bulls import BullsCrawler
+from src.crawlers.franchises.eungkeum import EungkeumCrawler
 from src.crawlers.franchises.daldduk import DalDdukCrawler
 from src.crawlers.franchises.dookki import DookkiCrawler
 from src.crawlers.franchises.esottuk import EsottukCrawler
@@ -66,5 +67,7 @@ def get_crawler(crawler_type):
         return TerryRozeCrawler()
     elif crawler_type == FranchiseType.BULLS:
         return BullsCrawler()
+    elif crawler_type == FranchiseType.EUNGKEUM:
+        return EungkeumCrawler()
     else:
         raise TypeError('invalid crawler type')

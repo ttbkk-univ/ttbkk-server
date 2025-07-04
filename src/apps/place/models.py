@@ -7,9 +7,11 @@ from src.apps.brand.models import Brand
 from src.apps.hashtag.models import Hashtag
 from src.apps.user.models import User
 
+def generate_uuid_hex():
+    return uuid.uuid4().hex
 
 class Place(models.Model):
-    id = models.CharField(primary_key=True, max_length=32, default=uuid.uuid4)
+    id = models.CharField(primary_key=True, max_length=32, default=generate_uuid_hex)
 
     latitude = models.DecimalField(max_digits=15, decimal_places=13)
     longitude = models.DecimalField(max_digits=15, decimal_places=12)

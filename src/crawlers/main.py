@@ -6,7 +6,7 @@ from src.crawlers.franchise_type import FranchiseType
 
 def run():
     crawlers = get_crawlers([
-        FranchiseType.BAEDDUCK,
+        # FranchiseType.BAEDDUCK,
         # FranchiseType.DALDDUK,
         # FranchiseType.DOOKKI,
         # FranchiseType.EUNGDDUK,
@@ -15,16 +15,17 @@ def run():
         # FranchiseType.JAWSFOOD,
         # FranchiseType.KANG,
         # FranchiseType.MYUNGRANG,
-        FranchiseType.SAMCHEOP,
+        # FranchiseType.SAMCHEOP,
         # FranchiseType.SINBUL,
         # FranchiseType.SINCHAM,
-        FranchiseType.SINJEON,
+        # FranchiseType.SINJEON,
         # FranchiseType.TERRYROZE,
         # FranchiseType.TTEOKCHAM,
         # FranchiseType.YOUNGDABANG,
         # FranchiseType.YUPDDUK,
         # FranchiseType.ZZING,
         # FranchiseType.BULLS,
+        FranchiseType.EUNGKEUM,
     ])
 
     if env.MULTI_THREAD_MODE:
