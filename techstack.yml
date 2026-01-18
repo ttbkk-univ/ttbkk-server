@@ -1,11 +1,12 @@
 repo_name: ttbkk-univ/ttbkk-server
 report_id: c32548320a2128e0dba01a6c1ab9fd94
+version: 0.1
 repo_type: Public
-timestamp: '2023-11-15T10:34:51+00:00'
+timestamp: '2024-01-05T08:40:13+00:00'
 requested_by: siner308
 provider: github
 branch: develop
-detected_tools_count: 8
+detected_tools_count: 35
 tools:
 - name: Python
   description: A clear and powerful object-oriented programming language, comparable
@@ -16,6 +17,7 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/993/pUBY5pVj.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server
   detection_source: Repo Metadata
 - name: MySQL
   description: The world's most popular open source database
@@ -25,6 +27,7 @@ tools:
   category: Data Stores
   sub_category: Databases
   image_url: https://img.stackshare.io/service/1025/logo-mysql-170x170.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
   detection_source: requirements.txt
   last_updated_by: siner308
   last_updated_on: 2021-06-12 14:55:27.000000000 Z
@@ -38,10 +41,22 @@ tools:
   category: Data Stores
   sub_category: In-Memory Databases
   image_url: https://img.stackshare.io/service/1031/default_cbce472cd134adc6688572f999e9122b9657d4ba.png
-  detection_source_url: requirements.txt
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
   detection_source: requirements.txt
   last_updated_by: siner308
   last_updated_on: 2022-03-20 10:59:56.000000000 Z
+- name: pgvector
+  description: Open-source vector similarity search for Postgres
+  website_url: https://github.com/pgvector/pgvector/
+  open_source: false
+  hosted_saas: false
+  category: Data Stores
+  sub_category: Database Tools
+  image_url: https://img.stackshare.io/service/109221/default_b888cdf5617d936aa6aacf130911906955508639.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
 - name: Docker
   description: Enterprise Container Platform for High-Velocity Innovation.
   website_url: https://www.docker.com/
@@ -51,6 +66,7 @@ tools:
   category: Build, Test, Deploy
   sub_category: Virtual Machine Platforms & Containers
   image_url: https://img.stackshare.io/service/586/n4u37v9t_400x400.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server
   detection_source: Repo Metadata
 - name: Git
   description: Fast, scalable, distributed revision control system
@@ -60,7 +76,22 @@ tools:
   category: Build, Test, Deploy
   sub_category: Version Control System
   image_url: https://img.stackshare.io/service/1046/git.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server
   detection_source: Repo Metadata
+- name: NGINX
+  description: A high performance free open source web server powering busiest sites
+    on the Internet.
+  website_url: http://nginx.org
+  version: 1.21.1
+  open_source: false
+  hosted_saas: false
+  category: Application Hosting
+  sub_category: Web Servers
+  image_url: https://img.stackshare.io/service/1052/YMxUfyWf.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/docker-compose.yml
+  detection_source: docker-compose.yml
+  last_updated_by: siner
+  last_updated_on: 2021-06-12 15:23:05.000000000 Z
 - name: PyPI
   description: A repository of software for the Python programming language
   website_url: https://pypi.org/
@@ -69,6 +100,19 @@ tools:
   category: Build, Test, Deploy
   sub_category: Hosted Package Repository
   image_url: https://img.stackshare.io/service/12572/-RIWgodF_400x400.jpg
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: LangChain
+  description: Build AI apps with LLMs through composability
+  website_url: https://github.com/hwchase17/langchain
+  open_source: true
+  hosted_saas: false
+  category: Communications
+  sub_category: Large Language Model Tools
+  image_url: https://img.stackshare.io/service/48790/default_5b6c6b73f1ff3775c85d2a1ba954cb87e30cbf13.jpg
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
   detection_source: requirements.txt
   last_updated_by: siner308
   last_updated_on: 2021-06-12 14:55:27.000000000 Z
@@ -81,10 +125,439 @@ tools:
   category: Languages & Frameworks
   sub_category: Languages
   image_url: https://img.stackshare.io/service/4631/default_c2062d40130562bdc836c13dbca02d318205a962.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server
   detection_source: Repo Metadata
+- name: Django
+  description: A high-level Python Web framework that encourages rapid development
+    and clean
+  package_url: https://pypi.org/project/Django
+  version: 3.2.2
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19832/default_58dbe7b4d7ec447b62773209af0f9a31bbabf5bd.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+  vulnerabilities:
+  - name: Django bypasses validation when using one form field to upload multiple
+      files
+    cve_id: CVE-2023-31047
+    cve_url: https://github.com/advisories/GHSA-r3xc-prgr-mg9p
+    detected_date: May 10
+    severity: critical
+    first_patched: 3.2.19
+  - name: SQL Injection in Django
+    cve_id: CVE-2022-28347
+    cve_url: https://github.com/advisories/GHSA-w24h-v9qh-8gxj
+    detected_date: Apr 23
+    severity: critical
+    first_patched: 3.2.13
+  - name: SQL Injection in Django
+    cve_id: CVE-2021-35042
+    cve_url: https://github.com/advisories/GHSA-xpfp-f569-q3p2
+    detected_date: Sep 23
+    severity: critical
+    first_patched: 3.2.5
+  - name: SQL Injection in Django
+    cve_id: CVE-2022-28346
+    cve_url: https://github.com/advisories/GHSA-2gwj-7jmv-h26r
+    detected_date: Apr 27
+    severity: critical
+    first_patched: 3.2.13
+  - name: Django has regular expression denial of service vulnerability in EmailValidator/URLValidator
+    cve_id: CVE-2023-36053
+    cve_url: https://github.com/advisories/GHSA-jh3w-4vvf-mjgr
+    detected_date: Jul 6
+    severity: high
+    first_patched: 3.2.20
+  - name: Potential bypass of an upstream access control based on URL paths in Django
+    cve_id: CVE-2021-44420
+    cve_url: https://github.com/advisories/GHSA-v6rh-hp5x-86rv
+    detected_date: Dec 14
+    severity: high
+    first_patched: 3.2.10
+  - name: 'Django vulnerable to Reflected File Download attack '
+    cve_id: CVE-2022-36359
+    cve_url: https://github.com/advisories/GHSA-8x94-hmjh-97hq
+    detected_date: Aug 12
+    severity: high
+    first_patched: 3.2.15
+  - name: Resource exhaustion in Django
+    cve_id: CVE-2023-24580
+    cve_url: https://github.com/advisories/GHSA-2hrw-hx67-34x6
+    detected_date: Feb 16
+    severity: high
+    first_patched: 3.2.18
+  - name: Information disclosure in Django
+    cve_id: CVE-2021-45116
+    cve_url: https://github.com/advisories/GHSA-8c5j-9r9f-c6w8
+    detected_date: Jan 13
+    severity: high
+    first_patched: 3.2.11
+  - name: Denial-of-service in Django
+    cve_id: CVE-2021-45115
+    cve_url: https://github.com/advisories/GHSA-53qw-q765-4fww
+    detected_date: Jan 13
+    severity: high
+    first_patched: 3.2.11
+  - name: Directory-traversal in Django
+    cve_id: CVE-2021-45452
+    cve_url: https://github.com/advisories/GHSA-jrh2-hc4r-7jwx
+    detected_date: Jan 13
+    severity: moderate
+    first_patched: 3.2.11
+- name: PyYAML
+  description: YAML parser and emitter for Python
+  package_url: https://pypi.org/project/PyYAML
+  version: 5.4.1
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19829/default_74a61b43bdb9fc0cba2978316b9976f43545029b.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: asgiref
+  description: ASGI specs, helper code, and adapters
+  package_url: https://pypi.org/project/asgiref
+  version: 3.3.4
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20739/default_88a4948f616ae7ccb7210803d2bd72b72851b6e9.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: certifi
+  description: Python package for providing Mozilla's CA Bundle
+  package_url: https://pypi.org/project/certifi
+  version: 2021.10.8
+  license: MPL-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19849/default_75c38a39b9f0062814489e2ec2cbfca0ca15d9ba.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2022-04-03 09:01:09.000000000 Z
+  vulnerabilities:
+  - name: Removal of e-Tugra root certificate
+    cve_id: CVE-2023-37920
+    cve_url: https://github.com/advisories/GHSA-xqr8-7jwr-rhp7
+    detected_date: Jul 26
+    severity: high
+    first_patched: 2023.7.22
+  - name: Certifi removing TrustCor root certificate
+    cve_id: CVE-2022-23491
+    cve_url: https://github.com/advisories/GHSA-43fp-rhv2-5gv8
+    detected_date: Dec 8
+    severity: moderate
+    first_patched: 2022.12.07
+- name: charset-normalizer
+  description: The Real First Universal Charset Detector
+  package_url: https://pypi.org/project/charset-normalizer
+  version: 2.0.12
+  open_source: false
+  hosted_saas: false
+  category: Build, Test, Deploy
+  sub_category: Package Managers
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2022-04-03 09:01:09.000000000 Z
+- name: defusedxml
+  description: XML bomb protection for Python stdlib modules
+  package_url: https://pypi.org/project/defusedxml
+  version: 0.7.1
+  license: Python-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20210/default_6796c4086c025d18cdc673750b208b846d8e0914.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: django-cors-headers
+  description: Django-cors-headers is a Django application for handling the server
+    headers required for Cross-Origin Resource Sharing
+  package_url: https://pypi.org/project/django-cors-headers
+  version: 3.7.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20425/default_fd0859a8a050b41b42cc678a2c0c5f51ce41801a.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: django-import-export
+  description: Django application and library for importing and exporting data with
+    included admin integration
+  package_url: https://pypi.org/project/django-import-export
+  version: 2.5.0
+  license: BSD-2-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20791/default_3b7e58b539b7ec2308803d9baa08705044c42413.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: djangorestframework
+  description: Web APIs for Django, made easy
+  package_url: https://pypi.org/project/djangorestframework
+  version: 3.12.4
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19870/default_d05f6f09935776629f62e8aed365805502c14921.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: gunicorn
+  description: WSGI HTTP Server for UNIX
+  package_url: https://pypi.org/project/gunicorn
+  version: 20.1.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19931/default_74a0c20721d3a0a1484d69586401591fe8993db2.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-07-25 08:31:01.000000000 Z
+- name: idna
+  description: Internationalized Domain Names in Applications
+  package_url: https://pypi.org/project/idna
+  version: '3.3'
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19863/default_f24e00e4cb7620e436f9d06e0305070e1335922a.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2022-04-03 09:01:09.000000000 Z
+- name: odfpy
+  description: Python API and tools to manipulate OpenDocument files
+  package_url: https://pypi.org/project/odfpy
+  version: 1.4.1
+  license: GPL-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: openpyxl
+  description: A Python library to read/write Excel 2010 xlsx/xlsm files
+  package_url: https://pypi.org/project/openpyxl
+  version: 3.0.7
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19895/default_4343f8bba4f6051641ffca8b4fbe9b099402c84d.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: packaging
+  description: Core utilities for Python packages
+  package_url: https://pypi.org/project/packaging
+  version: '21.3'
+  license: BSD-3-Clause,Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19894/default_f716e4bc541a9eb6e3f5b7a20d7c35355075b0b4.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2022-03-20 10:59:56.000000000 Z
+- name: pyparsing
+  description: Python parsing module
+  package_url: https://pypi.org/project/pyparsing
+  version: 3.0.7
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19881/default_2270bfab784e3d2c2d999d26b11ee478a9dad238.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2022-03-20 10:59:56.000000000 Z
+- name: pytz
+  description: World timezone definitions, modern and historical
+  package_url: https://pypi.org/project/pytz
+  version: '2021.1'
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19841/default_bb711fa267b2329ed689711a5adb7d9e74610b20.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: requests
+  description: Python HTTP for Humans
+  package_url: https://pypi.org/project/requests
+  version: 2.27.1
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19826/default_d7c684bf2673f008a9f02ac93901229297a22d7e.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2022-04-03 09:01:09.000000000 Z
+  vulnerabilities:
+  - name: Unintended leak of Proxy-Authorization header in requests
+    cve_id: CVE-2023-32681
+    cve_url: https://github.com/advisories/GHSA-j8r2-6x86-q33q
+    detected_date: May 23
+    severity: moderate
+    first_patched: 2.31.0
+- name: selenium
+  description: Python bindings for Selenium
+  package_url: https://pypi.org/project/selenium
+  version: 4.12.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19869/default_d05f6f09935776629f62e8aed365805502c14921.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2023-09-23 08:22:32.000000000 Z
+- name: sqlparse
+  description: Non-validating SQL parser
+  package_url: https://pypi.org/project/sqlparse
+  version: 0.4.1
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20039/default_a7a70921d2d3189665c78015850dc968f41705a1.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2022-04-03 09:01:09.000000000 Z
+  vulnerabilities:
+  - name: StripComments filter contains a regular expression that is vulnerable to
+      ReDOS (Regular Expression Denial of Service)
+    cve_id: CVE-2021-32839
+    cve_url: https://github.com/advisories/GHSA-p5w8-wqhj-9hhf
+    detected_date: Sep 11
+    severity: high
+    first_patched: 0.4.2
+  - name: sqlparse contains a regular expression that is vulnerable to Regular Expression
+      Denial of Service
+    cve_id: CVE-2023-30608
+    cve_url: https://github.com/advisories/GHSA-rrm6-wvj7-cwh2
+    detected_date: Apr 22
+    severity: moderate
+    first_patched: 0.4.4
+- name: tablib
+  description: Format agnostic tabular data library
+  package_url: https://pypi.org/project/tablib
+  version: 3.0.0
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20340/default_1df94722915923cd0ce380a3aa053d475566575b.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: urllib3
+  description: HTTP library with thread-safe connection pooling
+  package_url: https://pypi.org/project/urllib3
+  version: 1.26.9
+  license: MIT
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/19842/default_4604ff5dcb7f4d9c7b3833591c2142493951b19c.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2022-04-03 09:01:09.000000000 Z
+  vulnerabilities:
+  - name: urllib3's request body not stripped after redirect from 303 status changes
+      request method to GET
+    cve_id: CVE-2023-45803
+    cve_url: https://github.com/advisories/GHSA-g4mx-q9vg-27p4
+    detected_date: Oct 18
+    severity: moderate
+    first_patched: 1.26.18
+  - name: "`Cookie` HTTP header isn't stripped on cross-origin redirects"
+    cve_id: CVE-2023-43804
+    cve_url: https://github.com/advisories/GHSA-v845-jxx5-vc9f
+    detected_date: Oct 3
+    severity: moderate
+    first_patched: 1.26.17
+- name: webdriver-manager
+  description: Library provides the way to automatically manage drivers for different
+    browsers
+  package_url: https://pypi.org/project/webdriver-manager
+  version: 4.0.0
+  license: Apache-2.0
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2023-09-23 07:57:12.000000000 Z
 - name: wrapt
   description: Module for decorators, wrappers and monkey patching
-  package_url: https://pypi.org/wrapt
+  package_url: https://pypi.org/project/wrapt
   version: 1.14.0
   license: BSD-2-Clause
   open_source: true
@@ -92,7 +565,36 @@ tools:
   category: Libraries
   sub_category: PyPI Packages
   image_url: https://img.stackshare.io/package/19946/default_0b0a94e1bdf3e64deeccb23892ca2335bdc30e4f.png
-  detection_source_url: requirements.txt
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
   detection_source: requirements.txt
   last_updated_by: siner308
   last_updated_on: 2022-03-20 10:59:56.000000000 Z
+- name: xlrd
+  description: Library for developers to extract data from Microsoft Excel
+  package_url: https://pypi.org/project/xlrd
+  version: 2.0.1
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/20182/default_3d320a0aa731f16ceb0e7b6999ca7f7cd784aee2.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-06-12 14:55:27.000000000 Z
+- name: xlwt
+  description: Library to create spreadsheet files compatible with MS Excel 97/2000/XP/2003
+    XLS files
+  package_url: https://pypi.org/project/xlwt
+  version: 1.3.0
+  license: BSD-3-Clause
+  open_source: true
+  hosted_saas: false
+  category: Libraries
+  sub_category: PyPI Packages
+  image_url: https://img.stackshare.io/package/pypi/image.png
+  detection_source_url: https://github.com/ttbkk-univ/ttbkk-server/blob/develop/requirements.txt
+  detection_source: requirements.txt
+  last_updated_by: siner308
+  last_updated_on: 2021-07-25 08:31:01.000000000 Z
